@@ -13,8 +13,9 @@ class SellerAccount extends StatelessWidget {
         preferredSize: AppBar().preferredSize,
         child: CustomAppBar(
           userName: 'Iqraa Library',
-          userIconPath: 'assets/images/settings.png', // Replace with the path to your user icon
-),
+          userIconPath:
+              'assets/images/settings.png', // Replace with the path to your user icon
+        ),
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -33,7 +34,8 @@ class SellerAccount extends StatelessWidget {
                     height: 150.0,
                     width: 150.0,
                   ),
-                  SizedBox(width: 16.0), // Adjust the space between image and text
+                  SizedBox(
+                      width: 16.0), // Adjust the space between image and text
                   Expanded(
                     child: Text(
                       'Iqraa Library',
@@ -68,8 +70,6 @@ class SellerAccount extends StatelessWidget {
               'instagram-account',
               isSignedUp,
             ),
-            
-           
           ],
         ),
       ),
