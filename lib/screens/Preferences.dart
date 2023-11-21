@@ -56,7 +56,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                     'Fiction',
                     style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
                   ),
-                  const SizedBox(height: 20),
+                  const SizedBox(height: 15),
                   Row(
                     children: [
                       SubcategoryButton(
@@ -75,6 +75,12 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         label: 'Crime',
                         isSelected: selectedSubcategories.contains('Crime'),
                         onTap: () => toggleSubcategory('Crime'),
+                      ),
+                      const SizedBox(width: 5),
+                       SubcategoryButton(
+                        label: 'Historical',
+                        isSelected: selectedSubcategories.contains('Historical'),
+                        onTap: () => toggleSubcategory('Historical'),
                       ),
                     ],
                   ),
@@ -98,17 +104,17 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         isSelected: selectedSubcategories.contains('Science fiction'),
                         onTap: () => toggleSubcategory('Science fiction'),
                       ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Action',
+                        isSelected: selectedSubcategories.contains('Action'),
+                        onTap: () => toggleSubcategory('Action'),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 5 , height: 10),
                   Row(
                     children: [
-                      SubcategoryButton(
-                        label: 'Historical',
-                        isSelected: selectedSubcategories.contains('Historical'),
-                        onTap: () => toggleSubcategory('Historical'),
-                      ),
-                      const SizedBox(width: 5),
                       SubcategoryButton(
                         label: 'Romance',
                         isSelected: selectedSubcategories.contains('Romance'),
@@ -120,18 +126,129 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         isSelected: selectedSubcategories.contains('Fantasy'),
                         onTap: () => toggleSubcategory('Fantasy'),
                       ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Young Adult (YA) Fiction',
+                        isSelected: selectedSubcategories.contains('Young Adult (YA) Fiction'),
+                        onTap: () => toggleSubcategory('Young Adult (YA) Fiction'),
+                      ),
+
+                      
+                    ],
+                  ),
+                  const SizedBox(height: 40),
+                  const Text(
+                    'Science',
+                    style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(height: 15),
+                  Row(
+                    children: [
+                      SubcategoryButton(
+                        label: 'Art and Architecture',
+                        isSelected: selectedSubcategories.contains('Art and Architecture'),
+                        onTap: () => toggleSubcategory('Art and Architecture'),
+                      ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Biography',
+                        isSelected: selectedSubcategories.contains('Biography'),
+                        onTap: () => toggleSubcategory('Biography'),
+                      ),
+                      
+                      const SizedBox(width: 5),
+                       SubcategoryButton(
+                        label: 'Biology',
+                        isSelected: selectedSubcategories.contains('Biology'),
+                        onTap: () => toggleSubcategory('Biology'),
+                      ),
                     ],
                   ),
                   const SizedBox(width: 5 , height: 10),
                   Row(
                     children: [
                       SubcategoryButton(
-                        label: 'Action',
-                        isSelected: selectedSubcategories.contains('Action'),
-                        onTap: () => toggleSubcategory('Action'),
+                        label: 'Law',
+                        isSelected: selectedSubcategories.contains('Law'),
+                        onTap: () => toggleSubcategory('Law'),
                       ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Philosophy',
+                        isSelected: selectedSubcategories.contains('Philosophy'),
+                        onTap: () => toggleSubcategory('Philosophy'),
+                      ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Business and economics',
+                        isSelected: selectedSubcategories.contains('Business and economics'),
+                        onTap: () => toggleSubcategory('Business and economics'),
+                      ),
+                      
                     ],
                   ),
+                  const SizedBox(width: 5 , height: 10),
+                  Row(
+                    children: [
+                      SubcategoryButton(
+                        label: 'Cookbooks and Food',
+                        isSelected: selectedSubcategories.contains('Cookbooks and Food'),
+                        onTap: () => toggleSubcategory('Cookbooks and Food'),
+                      ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Health',
+                        isSelected: selectedSubcategories.contains('Health'),
+                        onTap: () => toggleSubcategory('Health'),
+                      ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Mathematics',
+                        isSelected: selectedSubcategories.contains('Mathematics'),
+                        onTap: () => toggleSubcategory('Mathematics'),
+                      ),
+                      
+                    ],
+                  ),
+                  const SizedBox(width: 5 , height: 10),
+                  Row(
+                    children: [
+                      SubcategoryButton(
+                        label: 'Language Arts and Writing',
+                        isSelected: selectedSubcategories.contains('Language Arts and Writing'),
+                        onTap: () => toggleSubcategory('Language Arts and Writing'),
+                      ),
+                      const SizedBox(width: 5),
+                      SubcategoryButton(
+                        label: 'Computer Science',
+                        isSelected: selectedSubcategories.contains('Computer Science'),
+                        onTap: () => toggleSubcategory('Computer Science'),
+                      ),
+                      
+                      
+                    ],
+                  ),
+                  const SizedBox(height: 40), // Add space between the last text and the button
+                  ElevatedButton(
+                    onPressed: () {
+                      // Add your functionality here
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFE16A3D),
+                      fixedSize: const Size(320,45),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(15.0),
+                      ),  // Set the background color
+                    ),
+                    child: const Padding(
+                      padding: EdgeInsets.all(10),
+                      child: Text(
+                        'Done',
+                        style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
+                      ),
+                    ),
+                  ),
+                  
                   // Display a message if more than 5 subcategories are selected
                   if (selectedSubcategories.length > 5)
                     const Padding(
@@ -192,19 +309,18 @@ class SubcategoryButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        width: 100,
-        height: 40,
+        padding: const EdgeInsets.all(8.0),
         decoration: BoxDecoration(
           color: isSelected ? const Color(0xFFE16A3D) : Colors.white,
           borderRadius: BorderRadius.circular(20),
-          border: isSelected ? Border.all(color: Colors.white, width: 1.0) : Border.all(color: Colors.black, width: 1.0) ,
+          border: isSelected ? Border.all(color: Colors.white, width: 0.9) : Border.all(color: Colors.black, width: 0.9),
         ),
         child: Center(
           child: Text(
             label,
             style: TextStyle(
               color: isSelected ? Colors.white : Colors.black,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.w500,
             ),
           ),
         ),
