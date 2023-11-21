@@ -4,12 +4,17 @@ publish_to: 'none'
 version: 0.1.0
 
 environment:
-  sdk: '>=3.1.5 <4.0.0'
+  sdk: '>=2.12.0 <3.0.0'
 
   
 dependencies:
   flutter:
     sdk: flutter
+  fluttertoast: ^8.2.4
+
+
+
+
 
 dev_dependencies:
   flutter_test:
@@ -21,3 +26,5 @@ flutter:
   assets: 
      - assets/images/ink-logo-tr.png
      - assets/images/ink-logo-black-01.png
+     - assets/images/ink-logo-orange.png
+     
