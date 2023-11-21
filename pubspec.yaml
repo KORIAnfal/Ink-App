@@ -27,4 +27,23 @@ flutter:
      - assets/images/ink-logo-tr.png
      - assets/images/ink-logo-black-01.png
      - assets/images/ink-logo-orange.png
+     - assets/images/settings.png
+     - assets/images/edit.png
+     - assets/images/delete_account.png
+     - assets/images/change_password.png
+     - assets/images/logo.png
+     - assets/images/settings.png
+     - assets/images/user_male.png
+     - assets/images/email.png
+     - assets/images/call.png
+     - assets/images/location.png
+     - assets/images/instagram.png
+     - assets/images/facebook.png
+     - assets/images/link.png
+     - assets/images/book_pile.png
+     - assets/images/home.png
+     - assets/images/add.png
+     - assets/images/search.png
+     - assets/images/profile.png
+  
      
