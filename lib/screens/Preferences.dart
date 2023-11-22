@@ -17,7 +17,8 @@ class _PreferencescreenState extends State<Preferencescreen> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         body: SingleChildScrollView( // Wrap the body with SingleChildScrollView
-          child: Stack(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const Align(
                 alignment: Alignment(0.9, -0.9),
@@ -300,11 +301,11 @@ class SubcategoryButton extends StatelessWidget {
   final bool isSelected;
   final VoidCallback onTap;
 
-  const SubcategoryButton({
+  const SubcategoryButton({Key? key, 
     required this.label,
     required this.isSelected,
     required this.onTap,
-  });
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

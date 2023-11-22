@@ -1,69 +1,182 @@
 import 'package:flutter/material.dart';
-import 'CustomAppBar.dart';
+import 'utils/custom_bottom_navigation_bar.dart';
+import 'utils/CustomAppBar.dart';
+import 'dart:ui';
 
 class Guest_Account extends StatelessWidget {
+  bool isSignedUp = false; // Set to true if the user is signed up
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: PreferredSize(
         preferredSize: AppBar().preferredSize,
-        child: CustomAppBar(userName: 'User_003'),
+        child: CustomAppBar(
+          userName: 'User_003',
+          userIconPath: 'assets/images/settings.png', // Replace with the path to your user icon
+        ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Image at the top, centered
-          Container(
-            width: double.infinity,
-            height: 200.0, // Adjust the height as needed
-            alignment: Alignment.center,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.asset(
-                  'assets/user_male.png', // Replace with your image path
-                  height: 150.0, // Adjust the height as needed
-                  width: 150.0, // Adjust the width as needed
-                ),
-                SizedBox(height: 4.0), // Adjust the height as needed
-                Text(
-                  'Guest',
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            // Image at the top, centered
+            Container(
+              width: double.infinity,
+              height: 200.0,
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    'assets/images/user_male.png',
+                    height: 150.0,
+                    width: 150.0,
                   ),
-                ),
-              ],
+                  SizedBox(height: 4.0), // Reduced the space
+                  Text(
+                    'Guest',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          // Lines of user information without transparent effect
-          SizedBox(height: 16.0),
-          buildUserInfoRow('assets/email.png', 'user.email@example.com'),
-          buildUserInfoRow('assets/call.png', '123-456-7890'),
-          buildUserInfoRow('assets/location.png', '123 Main Street, City'),
-          // Divider
-        Divider(
-            color: Colors.grey, // Change the color to grey or any preferred color
-            thickness: 0.5, // Adjust the thickness as needed
-          ),
-          // Add more user information rows as needed
-        ],
+
+            // Lines of user information with more vague effect
+            buildVagueUserInfoRow(
+              'assets/images/location.png',
+              'Wilaya',
+              isSignedUp,
+            ),
+            buildVagueUserInfoRow(
+              'assets/images/call.png',
+              '06*******/07*******',
+              isSignedUp,
+            ),
+            buildVagueUserInfoRow(
+              'assets/images/email.png',
+              'user.email@example.com',
+              isSignedUp,
+            ),
+            buildVagueUserInfoRow(
+              'assets/images/instagram.png',
+              'instagram-account',
+              isSignedUp,
+            ),
+            buildVagueUserInfoRow(
+              'assets/images/facebook.png',
+              'facebook-account',
+              isSignedUp,
+            ),
+            buildVagueUserInfoRow(
+              'assets/images/link.png',
+              'link',
+              isSignedUp,
+            ),
+
+            // Divider
+            Divider(
+              color: Colors.grey,
+              thickness: 0.5,
+            ),
+
+            // Space between Divider and Seller Account Text
+            SizedBox(height: 14.0), // Adjust the space as needed
+
+            // Seller Account Text
+            Text(
+              'Seller Account',
+              style: TextStyle(
+                fontSize: 20.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 8.0), // Adjust the space as needed
+
+            // Seller Account Description
+            Text(
+              'To sell your books you need to create',
+              textAlign: TextAlign.center,
+            ),
+
+            Text(
+              'a seller account.',
+              textAlign: TextAlign.center,
+            ),
+
+            // Space for Image
+            SizedBox(height: 20.0), // Reduced the space
+            Image.asset(
+              'assets/images/book_pile.png',
+              height: 75.0,
+              width: 128.0,
+              fit: BoxFit.cover,
+            ),
+
+            // Button - Create Account
+            SizedBox(height: 16.0),
+            ElevatedButton(
+              onPressed: () {
+                // Handle button press
+              },
+              style: ButtonStyle(
+                backgroundColor:
+                    MaterialStateProperty.all<Color>(Color(0xFFE16A3D)),
+              ),
+              child: Text('Create Account'),
+            ),
+
+            // Already Have an Account Text
+            SizedBox(height: 4.0),
+            Text(
+              'Already have an account?',
+              style: TextStyle(
+                fontSize: 14.0,
+              ),
+            ),
+
+            // Space for Bottom Navigation Bar
+            SizedBox(height: MediaQuery.of(context).size.height * 0.2),
+          ],
+        ),
       ),
+      bottomNavigationBar: CustomBottomNavigationBar(),
     );
   }
 
-  Widget buildUserInfoRow(String iconPath, String text) {
-    return Row(
-      children: [
-        Image.asset(
-          iconPath,
-          height: 24.0, // Adjust the height as needed
-          width: 24.0, // Adjust the width as needed
-        ),
-        SizedBox(width: 8.0),
-        Text(text,
-            style: TextStyle(color: Colors.black)), // Adjust text color if needed
-      ],
+  Widget buildVagueUserInfoRow(
+    String iconPath,
+    String text,
+    bool isSignedUp,
+  ) {
+    return Container(
+      color: Colors.white,
+      child: Row(
+        children: [
+          Opacity(
+            opacity: isSignedUp ? 1.0 : 0.5, // Adjust the opacity value
+            child: Image.asset(
+              iconPath,
+              height: 24.0,
+              width: 24.0,
+            ),
+          ),
+          SizedBox(width: 8.0),
+          Opacity(
+            opacity: isSignedUp ? 1.0 : 0.5, // Adjust the opacity value
+            child: Text(
+              text,
+              style: TextStyle(
+                color: Colors.grey, // Change text color to black
+                fontSize: 12.0,
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

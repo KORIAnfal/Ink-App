@@ -2,38 +2,42 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String userName;
+  final String userIconPath;
 
-  CustomAppBar({required this.userName});
+  CustomAppBar({required this.userName, required this.userIconPath});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Colors.white,
-      elevation: 0.5, // Set a small elevation to show the bottom line
+      elevation: 0.5,
       leading: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Image.asset(
-          'assets/logo.png', // Replace with your logo image path
-          height: 30, // Adjust the height as needed
+          'assets/images/ink-logo-black-01.png',
+          height: 30,
+          semanticLabel: 'Ink Logo',
         ),
       ),
       title: Center(
-        child: Text(
-          userName,
-          style: TextStyle(color: Colors.black),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0),
+          child: Text(
+            userName,
+            style: TextStyle(color: Colors.black),
+          ),
         ),
       ),
       actions: [
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Image.asset(
-            'assets/settings.png', // Replace with your image path
-            height: 30, // Adjust the height as needed
+            userIconPath,
+            height: 30,
+            semanticLabel: 'User Icon',
           ),
         ),
       ],
-      
     );
   }
-  
 }

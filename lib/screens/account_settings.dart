@@ -34,7 +34,7 @@ class Account_Settings extends StatelessWidget {
         children: [
           ActionBox(
             title: 'Edit Account',
-            imagePath: 'assets/edit.png',
+            imagePath: 'assets/images/edit.png',
             onPressed: () {
               // Handle Edit Account action
               print('Edit Account pressed');
@@ -43,7 +43,7 @@ class Account_Settings extends StatelessWidget {
           ),
           ActionBox(
             title: 'Change Password',
-            imagePath: 'assets/change_password.png',
+            imagePath: 'assets/images/change_password.png',
             onPressed: () {
               // Handle Change Password action
               print('Change Password pressed');
@@ -52,7 +52,7 @@ class Account_Settings extends StatelessWidget {
           ),
           ActionBox(
             title: 'Delete Account',
-            imagePath: 'assets/delete_account.png',
+            imagePath: 'assets/images/delete_account.png',
             onPressed: () {
               // Handle Delete Account action
               print('Delete Account pressed');
