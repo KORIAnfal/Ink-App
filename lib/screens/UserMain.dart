@@ -3,6 +3,8 @@ import 'utils/CustomAppBar.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'sectionScreen.dart';
 import 'BookDetailsUser.dart';
+import 'Guest_Account.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -40,13 +42,37 @@ class MainScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        appBar: PreferredSize(
-          preferredSize: AppBar().preferredSize,
-          child:  CustomAppBar(
-            userName: '',
-           userIcon: FontAwesomeIcons.cog, 
+        appBar: AppBar(
+          backgroundColor: Colors.white,
+          leading: IconButton(
+            icon: Image.asset(
+              'assets/images/ink-logo-black-01.png',
+              width: 60,
+              height: 80,
+            ),
+           
+              onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+            },
           ),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.account_circle),
+              color: Colors.black,
+              iconSize: 30,
+              onPressed: () {
+                 Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Guest_Account()),
+                          );             
+            },
+            ),
+          ],
         ),
+
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.all(16.0),

@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'utils/CustomAppBar.dart';
 import 'dart:ui';
+import 'UserMain.dart';
 
+import 'GeneralSettings.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -37,13 +39,41 @@ class SellerAccount extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child: CustomAppBar(
-          userName: user.name,
-    userIcon: FontAwesomeIcons.cog, // Replace with the desired FontAwesome icon
-        ),
-      ),
+      appBar: AppBar(
+              backgroundColor: Colors.white,
+              leading: IconButton(
+                icon: Image.asset(
+                  'assets/images/ink-logo-black-01.png',
+                  width: 60,
+                  height: 80,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+                },
+              ),
+              title: Center(
+                child: Text(
+                  user.name,
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color:Colors.black),
+                ),
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.settings), // Change the icon to settings
+                  color: Colors.black,
+                  iconSize: 30,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GeneralSettings(user: user)),
+                    );
+                  },
+                ),
+              ],
+            ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
