@@ -8,15 +8,15 @@ Widget _buildSection(String sectionTitle, List<String> books) {
         children: [
           Text(
             sectionTitle,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),
-      SizedBox(height: 8),
+      const SizedBox(height: 8),
       _buildBookRow(books.sublist(0, 3)),
-      SizedBox(height: 8),
+      const SizedBox(height: 8),
       _buildBookRow(books.sublist(3, 6)),
-      SizedBox(height: 16),
+      const SizedBox(height: 16),
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -24,7 +24,7 @@ Widget _buildSection(String sectionTitle, List<String> books) {
             onPressed: () {
               // Handle "See All" action for this section
             },
-            child: Text(
+            child: const Text(
               "See All",
               style: TextStyle(color: Color(0xFFE16A3D)),
             ),
@@ -44,7 +44,7 @@ Widget _buildSection(String sectionTitle, List<String> books) {
           .map(
             (book) => Expanded(
               child: Container(
-                margin: EdgeInsets.only(right: 8),
+                margin: const EdgeInsets.only(right: 8),
                 child: Image.network(
                   // Replace with the actual image URL or asset path for the book cover
                   'https://example.com/book_covers/$book.png',

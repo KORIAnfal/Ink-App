@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'utils/CustomAppBar.dart';
+import 'utils/user.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'CreateAccount.dart';
+import 'Login.dart';
+
 import 'dart:ui';
 
 class Guest_Account extends StatelessWidget {
@@ -9,13 +15,13 @@ class Guest_Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child: CustomAppBar(
-          userName: 'User_003',
-          userIconPath: 'assets/images/settings.png', // Replace with the path to your user icon
-        ),
-      ),
+     appBar: PreferredSize(
+  preferredSize: AppBar().preferredSize,
+  child: CustomAppBar(
+    userName: 'User_003',
+    userIcon: FontAwesomeIcons.cog, // Replace with the desired FontAwesome icon
+  ),
+),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -120,7 +126,12 @@ class Guest_Account extends StatelessWidget {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
-                // Handle button press
+                // Navigate to the CreateAccount screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => CreateAccountScreen()),
+                );
               },
               style: ButtonStyle(
                 backgroundColor:
@@ -130,11 +141,34 @@ class Guest_Account extends StatelessWidget {
             ),
 
             // Already Have an Account Text
-            SizedBox(height: 4.0),
-            Text(
-              'Already have an account?',
-              style: TextStyle(
-                fontSize: 14.0,
+            SizedBox(height: 1.0),
+            GestureDetector(
+              onTap: () {
+                // Navigate to the Login screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                );
+              },
+              child: RichText(
+                text: TextSpan(
+                  style: TextStyle(
+                    fontSize: 14.0,
+                    color: Colors.black,
+                  ),
+                  children: [
+                    TextSpan(
+                      text: 'Already have an account? ',
+                    ),
+                    TextSpan(
+                      text: 'Login',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        decoration: TextDecoration.underline,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
 

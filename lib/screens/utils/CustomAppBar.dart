@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 class CustomAppBar extends StatelessWidget {
   final String userName;
-  final String userIconPath;
+  final IconData userIcon; // Change from String to IconData
 
-  CustomAppBar({required this.userName, required this.userIconPath});
+  CustomAppBar({required this.userName, required this.userIcon});
 
   @override
   Widget build(BuildContext context) {
@@ -31,10 +31,10 @@ class CustomAppBar extends StatelessWidget {
       actions: [
         Padding(
           padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            userIconPath,
-            height: 30,
-            semanticLabel: 'User Icon',
+          child: Icon(
+            userIcon, // Use the provided IconData
+            size: 30,
+            color: Colors.black,
           ),
         ),
       ],

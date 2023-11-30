@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'Preferences.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({Key? key}) : super(key: key);
@@ -46,7 +47,10 @@ class GetStartedScreen extends StatelessWidget {
               const SizedBox(height: 40), // Add space between the last text and the button
               ElevatedButton(
                 onPressed: () {
-                  // Add your functionality here
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => const Preferencescreen()), // Use your preferences screen class
+                  );
                 },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE16A3D),

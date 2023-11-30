@@ -1,19 +1,50 @@
 import 'package:flutter/material.dart';
 import 'utils/CustomAppBar.dart';
+import 'utils/custom_bottom_navigation_bar.dart';
+import 'sectionScreen.dart';
+import 'BookDetailsUser.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+
+
+
+
+Map sections = {
+
+  "Religion": {
+    "books": ["3.jpg", "1.jpg", "2.jpg", "4.jpg", "5.jpg", "6.jpg","2.jpg", "4.jpg", "5.jpg"],
+    "icons": [true, false, true, false, true, false, true, false, true],
+  },
+  "Social": {
+    "books": ["4.jpg", "5.jpg", "6.jpg", "3.jpg", "1.jpg", "2.jpg"],
+    "icons": [false, true, false, true, false, true],
+  },
+    "Law": {
+    "books": ["4.jpg", "5.jpg", "6.jpg", "3.jpg", "1.jpg", "2.jpg"],
+    "icons": [false, true, false, true, false, true],
+  },
+    "Art": {
+    "books": ["4.jpg", "5.jpg", "6.jpg", "3.jpg", "1.jpg", "2.jpg"],
+    "icons": [false, true, false, true, false, true],
+  },
+  // Add more sections as needed...
+};
+
 
 class MainScreen extends StatelessWidget {
   const MainScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: AppBar().preferredSize,
-          child: CustomAppBar(
-            userName: 'fffffff ',
-            userIconPath: 'assets/images/settings.png', // Replace with the path to your user icon
+          child:  CustomAppBar(
+            userName: '',
+           userIcon: FontAwesomeIcons.cog, 
           ),
         ),
         body: SingleChildScrollView(
@@ -21,21 +52,24 @@ class MainScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                _buildSection("Action", ["Book 1", "Book 2", "Book 3", "Book 4", "Book 5", "Book 6"]),
-                _buildSection("Horror", ["Book 7", "Book 8", "Book 9", "Book 10", "Book 11", "Book 12"]),
-                _buildSection("Mystery", ["Book 13", "Book 14", "Book 15", "Book 16", "Book 17", "Book 18"]),
-                _buildSection("Science Fiction", ["Book 19", "Book 20", "Book 21", "Book 22", "Book 23", "Book 24"]),
-                // Add more sections as needed
+             children: [
+                 _buildSection2("Ads", ["7.jpg", "8.jpg", "9.jpg",]),
+                      const SizedBox(height: 25),
+                for (var entry in sections.entries)
+                
+                
+                  _buildSection(entry.key, entry.value['books']!.sublist(0, 6), entry.value['icons']!.sublist(0, 6), context),
               ],
+
             ),
           ),
         ),
+        bottomNavigationBar: const CustomBottomNavigationBar(),
       ),
     );
   }
 
-  Widget _buildSection(String sectionTitle, List<String> books) {
+Widget _buildSection(String sectionTitle, List<String> books, List<bool> booksWithSpecialIcons, BuildContext context) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.stretch,
     children: [
@@ -44,23 +78,32 @@ class MainScreen extends StatelessWidget {
         children: [
           Text(
             sectionTitle,
-            style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
           ),
         ],
       ),
-      SizedBox(height: 8),
-      _buildBookRow(books.sublist(0, 3)),
-      SizedBox(height: 8),
-      _buildBookRow(books.sublist(3, 6)),
-      SizedBox(height: 16),
+      const SizedBox(height: 8),
+      _buildBookRow(books.sublist(0, 3), booksWithSpecialIcons, context),
+      const SizedBox(height: 8),
+      _buildBookRow(books.sublist(3, 6), booksWithSpecialIcons, context),
+    
       Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
           TextButton(
             onPressed: () {
-              // Handle "See All" action for this section
+             Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => SingleSectionScreen(
+                  sectionTitle: sectionTitle,
+                  sectionData: sections[sectionTitle]!,
+                ),
+              ),
+            );
+
             },
-            child: Text(
+            child: const Text(
               "See All",
               style: TextStyle(color: Color(0xFFE16A3D)),
             ),
@@ -71,21 +114,122 @@ class MainScreen extends StatelessWidget {
   );
 }
 
+Widget _buildSection2(String sectionTitle, List<String> books) {
+  return Column(
+    crossAxisAlignment: CrossAxisAlignment.stretch,
+    children: [
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            sectionTitle,
+            style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+          ),
+        ],
+      ),
+      SizedBox(
+        height: 170, // Set the height based on your desired book image size
+        child: PageView.builder(
+          itemCount: books.length,
+          itemBuilder: (context, index) {
+            return _buildBookRow2([books[index]]);
+          },
+        ),
+      ),
+      
+    ],
+  );
+}
 
 
-  Widget _buildBookRow(List<String> books) {
+
+Widget _buildBookRow(List<String> bookPaths, List<bool> booksWithSpecialIcons, BuildContext context) {
+  // Display only the first 6 books if there are more than 6
+  List<String> displayedBooks = bookPaths.length > 6 ? bookPaths.sublist(0, 6) : bookPaths;
+
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: displayedBooks
+        .asMap()
+        .entries
+        .map(
+          (entry) => Expanded(
+            child: GestureDetector(
+              onTap: () {
+                // Navigate to BookDetailsPage when a book is tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookDetailsUserScreen (bookPath: displayedBooks[entry.key]),
+                  ),
+                );
+              },
+              child: Container(
+                margin: const EdgeInsets.only(right: 8),
+                child: Stack(
+                  children: [
+                    ClipRRect(
+                      borderRadius: BorderRadius.circular(12),
+                      child: Image.asset(
+                        'assets/images/${displayedBooks[entry.key]}',
+                        height: 150,
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    Positioned(
+                      bottom: 4,
+                      right: 4,
+                      child: Container(
+                        padding: const EdgeInsets.all(2),
+                        decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                        ),
+                        child: booksWithSpecialIcons[entry.key]
+                            ? const Icon(
+                                Icons.airplane_ticket_outlined,
+                                color: Colors.orangeAccent,
+                                size: 16,
+                              )
+                            : const Icon(
+                                Icons.currency_exchange_rounded,
+                                color: Colors.green,
+                                size: 16,
+                              ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ),
+        )
+        .toList(),
+  );
+}
+
+
+  Widget _buildBookRow2(List<String> bookPaths) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: books
+      children: bookPaths
           .map(
-            (book) => Expanded(
-              child: Container(
-                margin: EdgeInsets.only(right: 8),
-                child: Image.network(
-                  // Replace with the actual image URL or asset path for the book cover
-                  'https://example.com/book_covers/$book.png',
-                  height: 100,
-                  fit: BoxFit.cover,
+            (bookPath) => Expanded(
+              child: GestureDetector(
+                onTap: () {
+                  // Handle tap on the book cover
+                  print("Tapped on $bookPath");
+                },
+                child: Container(
+                  margin: const EdgeInsets.only(right: 8),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(12), // Adjust the radius as needed
+                    child: Image.asset(
+                      'assets/images/$bookPath', // Update the path as needed
+                      height: 150,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -93,6 +237,7 @@ class MainScreen extends StatelessWidget {
           .toList(),
     );
   }
+
+
+
 }
-
-
