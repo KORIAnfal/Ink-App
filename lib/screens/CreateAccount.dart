@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'utils/custom_bottom_navigation_bar.dart';
-import 'utils/user.dart';
+import 'Seller_Account.dart' as SellerAccount;
+
 
 
 class CreateAccountScreen extends StatefulWidget {
@@ -399,8 +400,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   Align(
                     alignment: Alignment.topCenter,
                     child: Image.asset(
-                      'assets/images/book_user.png', // Replace with the actual path to your illustration
-                      height: 120.0, // Adjust the height as needed
+                      'assets/images/book_user.png',
+                      height: 120.0,
                     ),
                   ),
                   SizedBox(height: 16.0),
@@ -422,10 +423,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // Close the dialog
+                      _navigateToSellerAccountScreen(); // Navigate to the seller account screen
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFE16A3D), // Button color
+                      primary: Color(0xFFE16A3D),
                     ),
                     child: Text('OK'),
                   ),
@@ -435,6 +437,13 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           ),
         );
       },
+    );
+  }
+
+  void _navigateToSellerAccountScreen() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (context) => SellerAccount.SellerAccount()),
     );
   }
 }

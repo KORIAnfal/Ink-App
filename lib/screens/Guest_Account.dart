@@ -3,11 +3,22 @@ import 'utils/custom_bottom_navigation_bar.dart';
 import 'utils/CustomAppBar.dart';
 import 'utils/user.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'UserMain.dart';
+
+import 'GeneralSettings.dart';
 
 import 'CreateAccount.dart';
 import 'Login.dart';
 
 import 'dart:ui';
+
+final User user = User(
+    name: 'User_003',
+    location: ' ',
+    phoneNumber: ' ',
+    email: ' ',
+    instagramAccount: ' ',
+  );
 
 class Guest_Account extends StatelessWidget {
   bool isSignedUp = false; // Set to true if the user is signed up
@@ -15,13 +26,41 @@ class Guest_Account extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-     appBar: PreferredSize(
-  preferredSize: AppBar().preferredSize,
-  child: CustomAppBar(
-    userName: 'User_003',
-    userIcon: FontAwesomeIcons.cog, // Replace with the desired FontAwesome icon
-  ),
-),
+      appBar: AppBar(
+              backgroundColor: Colors.white,
+              leading: IconButton(
+                icon: Image.asset(
+                  'assets/images/ink-logo-black-01.png',
+                  width: 60,
+                  height: 80,
+                ),
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => MainScreen()),
+                  );
+                },
+              ),
+              title: Center(
+                child: Text(
+                  user.name,
+                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color:Colors.black),
+                ),
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(Icons.settings), // Change the icon to settings
+                  color: Colors.black,
+                  iconSize: 30,
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => GeneralSettings(user: user)),
+                    );
+                  },
+                ),
+              ],
+            ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
