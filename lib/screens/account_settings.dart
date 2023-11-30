@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'ChangePassword.dart';
+import 'EditAccount.dart';
+import 'utils/user.dart';
 
 class Account_Settings extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final User user = User(
+      name: 'Iqraa Library',
+      location: 'Wilaya',
+      phoneNumber: '0634567893/0712009845',
+      email: 'sara.email@example.com',
+      instagramAccount: 'Iqraa-dz',
+    );
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
@@ -36,8 +46,11 @@ class Account_Settings extends StatelessWidget {
             title: 'Edit Account',
             imagePath: 'assets/images/edit.png',
             onPressed: () {
-              // Handle Edit Account action
-              print('Edit Account pressed');
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => EditAccountScreen(user: user)),
+              );
             },
             isOrange: false, // Set the orange color for this text
           ),
@@ -45,8 +58,10 @@ class Account_Settings extends StatelessWidget {
             title: 'Change Password',
             imagePath: 'assets/images/change_password.png',
             onPressed: () {
-              // Handle Change Password action
-              print('Change Password pressed');
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+              );
             },
             isOrange: false, // Set the orange color for this text
           ),
@@ -54,8 +69,43 @@ class Account_Settings extends StatelessWidget {
             title: 'Delete Account',
             imagePath: 'assets/images/delete_account.png',
             onPressed: () {
-              // Handle Delete Account action
-              print('Delete Account pressed');
+              showDialog(
+                context: context,
+                builder: (BuildContext context) {
+                  return AlertDialog(
+                    title: Text('Confirm Deletion'),
+                    content:
+                        Text('Are you sure you want to delete your account?'),
+                    actions: <Widget>[
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                        child: Text(
+                          'Cancel',
+                          style: TextStyle(color: Color(0xFFE16A3D)),
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          // Handle Delete Account action
+                          print('Delete Account confirmed');
+                          Navigator.of(context).pop(); // Close the dialog
+                        },
+                        child: Text(
+                          'Delete',
+                          style: TextStyle(color: Color(0xFFE16A3D)),
+                        ),
+                      ),
+                    ],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    backgroundColor: Colors.white,
+                    elevation: 4.0,
+                  );
+                },
+              );
             },
             isOrange: true, // Set the orange color for this text
           ),
@@ -89,7 +139,8 @@ class ActionBox extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8.0), // Smaller border radius
-          border: Border.all(color: Color(0xFFCCCCCC)), // Set border color to #CCCCCC
+          border: Border.all(
+              color: Color(0xFFCCCCCC)), // Set border color to #CCCCCC
         ),
         child: Row(
           children: [
@@ -97,7 +148,9 @@ class ActionBox extends StatelessWidget {
               imagePath,
               width: 27.0, // Smaller width
               height: 27.0, // Smaller height
-              color: isOrange ? Color(0xFFE16A3D) : Colors.black, // Use orange color if specified
+              color: isOrange
+                  ? Color(0xFFE16A3D)
+                  : Colors.black, // Use orange color if specified
             ),
             SizedBox(width: 8.0), // Smaller spacing
             Text(
@@ -105,7 +158,9 @@ class ActionBox extends StatelessWidget {
               style: TextStyle(
                 fontSize: 14.0, // Smaller font size
                 fontWeight: FontWeight.bold,
-                color: isOrange ? Color(0xFFE16A3D) : Colors.black, // Use orange color if specified
+                color: isOrange
+                    ? Color(0xFFE16A3D)
+                    : Colors.black, // Use orange color if specified
               ),
             ),
           ],
