@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'CreateAccount.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -12,7 +13,8 @@ class LoginScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Container(
-            color: Colors.white.withOpacity(0.5), // Adjust the opacity as needed
+            color:
+                Colors.white.withOpacity(0.5), // Adjust the opacity as needed
           ),
           SingleChildScrollView(
             padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
@@ -31,32 +33,44 @@ class LoginScreen extends StatelessWidget {
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: 'Email',
-                    hintStyle: TextStyle(color: Colors.black), // Change text color to black
-                    prefixIcon: Icon(Icons.email, color: Colors.black), // Change icon color to black
+                    hintStyle: TextStyle(
+                        color: Colors.black), // Change text color to black
+                    prefixIcon: Icon(Icons.email,
+                        color: Colors.black), // Change icon color to black
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black), // Change border color to black
+                      borderSide: BorderSide(
+                          color: Colors.black), // Change border color to black
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black), // Change focused border color to black
+                      borderSide: BorderSide(
+                          color: Colors
+                              .black), // Change focused border color to black
                     ),
                   ),
-                  style: TextStyle(color: Colors.black), // Change text color to black
+                  style: TextStyle(
+                      color: Colors.black), // Change text color to black
                 ),
                 SizedBox(height: 20.0),
                 TextFormField(
                   obscureText: true,
                   decoration: InputDecoration(
                     hintText: 'Password',
-                    hintStyle: TextStyle(color: Colors.black), // Change text color to black
-                    prefixIcon: Icon(Icons.lock, color: Colors.black), // Change icon color to black
+                    hintStyle: TextStyle(
+                        color: Colors.black), // Change text color to black
+                    prefixIcon: Icon(Icons.lock,
+                        color: Colors.black), // Change icon color to black
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black), // Change border color to black
+                      borderSide: BorderSide(
+                          color: Colors.black), // Change border color to black
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black), // Change focused border color to black
+                      borderSide: BorderSide(
+                          color: Colors
+                              .black), // Change focused border color to black
                     ),
                   ),
-                  style: TextStyle(color: Colors.black), // Change text color to black
+                  style: TextStyle(
+                      color: Colors.black), // Change text color to black
                 ),
                 SizedBox(height: 20.0),
                 Center(
@@ -71,7 +85,8 @@ class LoginScreen extends StatelessWidget {
                     ),
                     child: Text(
                       'Login',
-                      style: TextStyle(color: Colors.black), // Change text color to black
+                      style: TextStyle(
+                          color: Colors.black), // Change text color to black
                     ),
                   ),
                 ),
@@ -81,16 +96,22 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     Text(
                       "Don't have an account? ",
-                      style: TextStyle(color: Colors.black), // Change text color to black
+                      style: TextStyle(
+                          color: Colors.black), // Change text color to black
                     ),
                     GestureDetector(
                       onTap: () {
-                        // TODO: Navigate to the registration screen
+                        // Navigate to the registration screen
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => CreateAccountScreen()),
+                        );
                       },
                       child: Text(
                         'Create an account',
                         style: TextStyle(
-                          color: Colors.black, // Change text color to black
+                          color: Colors.black,
                           fontWeight: FontWeight.bold,
                         ),
                       ),

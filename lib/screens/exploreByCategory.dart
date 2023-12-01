@@ -41,7 +41,7 @@ class ExploreByCategory extends StatelessWidget {
           preferredSize: AppBar().preferredSize,
           child:  CustomAppBar(
             userName: '',
-           userIcon: FontAwesomeIcons.cog, 
+        
           ),
         ),
         body: SingleChildScrollView(

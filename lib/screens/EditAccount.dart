@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ink/screens/Seller_Account.dart';
 import 'dart:io';
 import 'utils/user.dart';
-
-
+import 'Seller_Account1.dart' as SellerAccount1;
 
 
 class EditAccountScreen extends StatefulWidget {
   final User user;
 
-  EditAccountScreen({Key? key, required this.user}) : super(key: key);
+   EditAccountScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _EditAccountScreenState createState() => _EditAccountScreenState();
@@ -25,18 +25,18 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
   final TextEditingController passwordController = TextEditingController();
   final TextEditingController instagramLinkController = TextEditingController();
 
-  List<String> wilayas = ['Wilaya 1', 'Wilaya 2', 'Wilaya 3'];
+  List<String> wilayas = ['Oran', 'Algries', 'Annaba'];
   List<String> regions = ['Region 1', 'Region 2', 'Region 3'];
 
-  String selectedWilaya = 'Wilaya 1';
+  String selectedWilaya = 'Oran';
   String selectedRegion = 'Region 1';
 
   PickedFile? pickedImage;
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
+    final ImagePicker picker = ImagePicker();
     final PickedFile? image =
-        await _picker.getImage(source: ImageSource.gallery);
+        await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       pickedImage = image;
@@ -62,12 +62,12 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
         backgroundColor: Colors.white,
         elevation: 0.5,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Edit Account',
           style: TextStyle(color: Colors.black),
         ),
@@ -76,17 +76,17 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Container(
                       width: 100.0,
                       height: 100.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                       ),
                       child: CircleAvatar(
@@ -94,13 +94,13 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                         backgroundImage: pickedImage != null
                             ? FileImage(File(pickedImage!.path))
                                 as ImageProvider<Object>?
-                            : AssetImage('assets/images/user_male.png'),
+                            : const AssetImage('assets/images/profile.png'),
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     GestureDetector(
                       onTap: _pickImage,
-                      child: Text(
+                      child: const Text(
                         'Change Profile Photo',
                         style: TextStyle(
                           color: Color(0xFFE16A3D),
@@ -110,7 +110,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
                 _buildTextField('Full Name', nameController, Icons.person,
                     isPassword: false, isRequired: true),
                 _buildDropdown('Wilaya', wilayas, selectedWilaya),
@@ -126,9 +126,9 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                     isPassword: false, isRequired: true),
                 _buildTextField('Password', passwordController, Icons.lock,
                     isPassword: true, isRequired: true),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 _buildLinksRectangle(),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 Row(
                   children: [
                     Expanded(
@@ -145,17 +145,17 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                           ),
                           side: MaterialStateProperty.resolveWith<BorderSide>(
                             (Set<MaterialState> states) {
-                              return BorderSide(color: Color(0xFFE16A3D));
+                              return const BorderSide(color: Color(0xFFE16A3D));
                             },
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Cancel',
                           style: TextStyle(color: Color(0xFFE16A3D)),
                         ),
                       ),
                     ),
-                    SizedBox(width: 16.0),
+                    const SizedBox(width: 16.0),
                     Expanded(
                       child: ElevatedButton(
                         onPressed: _validateAndSaveChanges,
@@ -164,13 +164,13 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                               MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
-                                return Color(0xFFE16A3D);
+                                return const Color(0xFFE16A3D);
                               }
-                              return Color(0xFFE16A3D);
+                              return const Color(0xFFE16A3D);
                             },
                           ),
                         ),
-                        child: Text('Save Changes'),
+                        child: const Text('Save Changes'),
                       ),
                     ),
                   ],
@@ -189,15 +189,15 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
       bool isRequired = false,
       TextInputType? keyboardType}) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           TextFormField(
             controller: controller,
             obscureText: isPassword,
@@ -217,17 +217,17 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
               }
             },
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
               hintText: label,
-              suffixIcon: Icon(icon, color: Color(0xFFE16A3D)),
+              suffixIcon: Icon(icon, color: const Color(0xFFE16A3D)),
             ),
           ),
         ],
@@ -237,29 +237,29 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
 
   Widget _buildLinksRectangle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Social Media Links',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           TextFormField(
             controller: instagramLinkController,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
               hintText: 'Add Instagram Link',
-              suffixIcon: Icon(Icons.link, color: Color(0xFFE16A3D)),
+              suffixIcon: const Icon(Icons.link, color: Color(0xFFE16A3D)),
             ),
           ),
         ],
@@ -269,15 +269,15 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
 
   Widget _buildDropdown(String label, List<String> items, String selectedItem) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           DropdownButtonFormField<String>(
             value: selectedItem,
             onChanged: (String? newValue) {
@@ -298,14 +298,14 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
               );
             }).toList(),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
             ),
           ),
@@ -329,7 +329,7 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
           content: SingleChildScrollView(
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -340,25 +340,27 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
                       height: 120.0,
                     ),
                   ),
-                  SizedBox(height: 16.0),
-                  Icon(Icons.check_circle, color: Colors.green, size: 40.0),
-                  SizedBox(height: 16.0),
-                  Text(
+                  const SizedBox(height: 16.0),
+                  const Icon(Icons.check_circle,
+                      color: Colors.green, size: 40.0),
+                  const SizedBox(height: 16.0),
+                  const Text(
                     'Changes Saved Successfully',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
                     ),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
-                      Navigator.pop(context);
+                      Navigator.pop(context); // Close the dialog
+                      _navigateToSellerAccountScreen1();
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFE16A3D),
+                      backgroundColor: const Color(0xFFE16A3D),
                     ),
-                    child: Text('OK'),
+                    child: const Text('OK'),
                   ),
                 ],
               ),
@@ -368,4 +370,13 @@ class _EditAccountScreenState extends State<EditAccountScreen> {
       },
     );
   }
+  void _navigateToSellerAccountScreen1() {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => SellerAccount1.SellerAccount1(),
+    ),
+  );
 }
+}
+
