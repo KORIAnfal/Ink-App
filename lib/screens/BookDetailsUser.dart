@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'utils/CustomAppBar.dart';
 import 'utils/sellerCard.dart';
+import 'Guest_Account.dart';
+
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
@@ -56,7 +58,7 @@ class Seller {
     accountName: "Fella zrk",
     isForSell: false,
     isForExchange: true,
-    price: 3200.00,
+    price: 0000.00,
     isAvailable: true,
     isDeliveryAvailable: true,
     profileImagePath: "assets/images/user_male.png",
@@ -135,13 +137,31 @@ class BookDetailsUserScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: PreferredSize(
-        preferredSize: AppBar().preferredSize,
-        child:  CustomAppBar(
-          userName: '',
-          userIcon: FontAwesomeIcons.cog, 
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: IconButton(
+          icon: Icon(Icons.arrow_back),
+          color: Colors.black,
+          onPressed: () {
+            // Handle back button press
+            Navigator.pop(context); // This line will navigate back
+          },
         ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.account_circle),
+            color: Colors.black,
+            iconSize: 30, // Set the size of the profile icon
+            onPressed: () {
+               Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => Guest_Account()),
+                          );             },
+          ),
+        ],
       ),
+
+
       body: _buildBookDetailsContent(),
       bottomNavigationBar: const CustomBottomNavigationBar(),
     );

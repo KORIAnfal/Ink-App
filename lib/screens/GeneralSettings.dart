@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'HelpCenter.dart';
 import 'Seller_Account.dart' as SellerAccount;
-import 'account_settings.dart' ;
+import 'account_settings.dart';
 import 'utils/user.dart';
-
+import 'UserMain.dart';
 
 class GeneralSettings extends StatefulWidget {
   final User user;
@@ -59,7 +59,8 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             // Handle profile click
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => SellerAccount.SellerAccount()),
+              MaterialPageRoute(
+                  builder: (context) => SellerAccount.SellerAccount()),
             );
           }),
           SizedBox(height: 16.0),
@@ -67,7 +68,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             // Handle account settings click
             Navigator.push(
               context,
-         MaterialPageRoute(builder: (context) => Account_Settings()),
+              MaterialPageRoute(builder: (context) => Account_Settings()),
             );
           }),
           _buildLanguageSetting(),
@@ -275,20 +276,25 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                   Text('Logout', style: TextStyle(fontSize: 30.0)),
                   Divider(color: Colors.grey),
                   SizedBox(height: 12.0),
-                  Text('Are you sure you want to logout?', style: TextStyle(fontSize: 20.0)),
+                  Text('Are you sure you want to logout?',
+                      style: TextStyle(fontSize: 20.0)),
                   SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       ElevatedButton(
                         onPressed: () {
-                          // TODO: Add logout logic
-                          Navigator.pop(context); // Close the dialog
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => MainScreen()),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           primary: Color(0xFFE16A3D),
                           onPrimary: Colors.white,
-                          minimumSize: Size(150.0, 50.0), // Adjusted minimumSize
+                          minimumSize:
+                              Size(150.0, 50.0), // Adjusted minimumSize
                         ),
                         child: Row(
                           children: [
@@ -307,17 +313,20 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                           Navigator.pop(context);
                         },
                         style: OutlinedButton.styleFrom(
-                          side: BorderSide(color: Colors.black), // Changed to black
-                          minimumSize: Size(150.0, 50.0), // Adjusted minimumSize
+                          side: BorderSide(
+                              color: Colors.black), // Changed to black
+                          minimumSize:
+                              Size(150.0, 50.0), // Adjusted minimumSize
                           padding: EdgeInsets.symmetric(horizontal: 20.0),
                         ),
                         child: Row(
                           children: [
-                            Icon(Icons.cancel, color: Colors.black, size: 30.0), // Changed to black
                             SizedBox(width: 12.0),
                             Text(
                               'Cancel',
-                              style: TextStyle(fontSize: 14.0, color: Colors.black), // Changed to black
+                              style: TextStyle(
+                                  fontSize: 14.0,
+                                  color: Colors.black), // Changed to black
                             ),
                           ],
                         ),
