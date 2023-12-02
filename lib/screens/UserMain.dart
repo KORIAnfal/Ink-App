@@ -212,15 +212,15 @@ Widget _buildBookRow(List<String> bookPaths, List<bool> booksWithSpecialIcons, B
                           shape: BoxShape.circle,
                         ),
                         child: booksWithSpecialIcons[entry.key]
-                            ? const Icon(
-                                Icons.airplane_ticket_outlined,
-                                color: Colors.orangeAccent,
-                                size: 16,
+                            ? FaIcon(
+                                FontAwesomeIcons.exchangeAlt, 
+                                size: 15,
+                                color: Color(0xFFE16A3D),
                               )
-                            : const Icon(
-                                Icons.currency_exchange_rounded,
+                            : const FaIcon(
+                                FontAwesomeIcons.tag, 
+                                size: 15,
                                 color: Colors.green,
-                                size: 16,
                               ),
                       ),
                     ),

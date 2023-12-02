@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'screens/GetStarted.dart';
 import 'screens/Seller_Account.dart';
-
+import 'screens/Add_book.dart';
+import 'screens/search_filter.dart';
+import 'screens/Add_book_post.dart';
 void main() {
   runApp(const GetStartedApp());
 }

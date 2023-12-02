@@ -12,14 +12,14 @@ class Book {
   Book({required this.imagePath});
 }
 
-class SellerAccount extends StatelessWidget {
+class SellerAccount1 extends StatelessWidget {
   bool isSignedUp = false; // Set to true if the user is signed up
 
   final User user = User(
     name: 'Iqraa Library',
     location: 'Oran',
     phoneNumber: '0634567893',
-    email: 'sara.email@example.com',
+    email: 'sarabelhadj.email@example.com',
     instagramAccount: 'Iqraa-dz',
   );
 
@@ -37,13 +37,13 @@ class SellerAccount extends StatelessWidget {
     // Add more books as needed
   ];
 
-  SellerAccount({Key? key}) : super(key: key);
+  SellerAccount1({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-                backgroundColor: Colors.white,
+        backgroundColor: Colors.white,
         leading: IconButton(
           icon: Image.asset(
             'assets/images/ink-logo-black-01.png',
@@ -81,7 +81,6 @@ class SellerAccount extends StatelessWidget {
           ),
         ],
       ),
-
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

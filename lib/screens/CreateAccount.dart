@@ -24,11 +24,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   final TextEditingController instagramLinkController = TextEditingController();
 
   // Added lists for wilaya and region dropdowns
-  List<String> wilayas = ['Wilaya 1', 'Wilaya 2', 'Wilaya 3'];
+   List<String> wilayas = ['Oran', 'Algries', 'Annaba'];
   List<String> regions = ['Region 1', 'Region 2', 'Region 3'];
 
-  // Selected wilaya and region
-  String selectedWilaya = 'Wilaya 1';
+  String selectedWilaya = 'Oran';
   String selectedRegion = 'Region 1';
 
   PickedFile? pickedImage;

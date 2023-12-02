@@ -58,7 +58,7 @@ class Seller {
     accountName: "Fella zrk",
     isForSell: false,
     isForExchange: true,
-    price: 3200.00,
+    price: 0000.00,
     isAvailable: true,
     isDeliveryAvailable: true,
     profileImagePath: "assets/images/user_male.png",
