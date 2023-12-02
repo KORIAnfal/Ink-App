@@ -43,7 +43,7 @@ class SellerAccount extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.white,
+                backgroundColor: Colors.white,
         leading: IconButton(
           icon: Image.asset(
             'assets/images/ink-logo-black-01.png',
@@ -81,6 +81,7 @@ class SellerAccount extends StatelessWidget {
           ),
         ],
       ),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

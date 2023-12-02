@@ -94,6 +94,7 @@ class BookDetailsSellerScreen extends StatelessWidget {
                 MaterialPageRoute(builder: (context) => Guest_Account()),
               );
             },
+
           ),
         ],
       ),
