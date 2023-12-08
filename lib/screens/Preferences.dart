@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'UserMain.dart';
+import 'package:ink/screens/UserMain.dart';
+import 'gender.dart';
 
 class Preferencescreen extends StatefulWidget {
   const Preferencescreen({Key? key}) : super(key: key);
@@ -26,7 +27,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const MainScreen()), // Use your home screen class
+                      MaterialPageRoute(builder: (context) =>  Gender()), // Use your home screen class
                     );
                   },
                   child: const Align(
@@ -246,7 +247,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => const MainScreen()), // Use your preferences screen class
+                            MaterialPageRoute(builder: (context) =>  Gender()), // Use your preferences screen class
                           );
                         },
                         style: ElevatedButton.styleFrom(
@@ -259,7 +260,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         child: const Padding(
                           padding: EdgeInsets.all(10),
                           child: Text(
-                            'Done',
+                            'Next',
                             style: TextStyle(fontSize: 20, fontWeight: FontWeight.w400),
                           ),
                         ),

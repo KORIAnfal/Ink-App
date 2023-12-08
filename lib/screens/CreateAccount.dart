@@ -6,6 +6,7 @@ import 'Seller_Account.dart' as SellerAccount;
 
 
 
+
 class CreateAccountScreen extends StatefulWidget {
   @override
   _CreateAccountScreenState createState() => _CreateAccountScreenState();
