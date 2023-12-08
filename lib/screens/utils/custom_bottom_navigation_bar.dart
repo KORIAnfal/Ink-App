@@ -4,6 +4,8 @@ import 'package:ink/screens/UserMain.dart';
 import 'package:ink/screens/Add_book.dart';
 import 'package:ink/screens/Seller_Account.dart';
 import 'package:ink/screens/search_filter.dart';
+import 'package:ink/screens/add_Isbn_dailog.dart';
+
 
 class CustomBottomNavigationBar extends StatefulWidget {
   const CustomBottomNavigationBar({Key? key}) : super(key: key);
@@ -63,7 +65,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
         _navigateAndSetIndex(MainScreen(), 0);
         break;
        case 1:
-        _navigateAndSetIndex(Add_book(), 1);
+        ISBNPopupDialog.show(context);
         break;
        case 2:
         _navigateAndSetIndex(Search_Filter(), 2);
