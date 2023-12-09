@@ -4,6 +4,8 @@ import 'EditAccount.dart';
 import 'utils/user.dart';
 
 class Account_Settings extends StatelessWidget {
+  const Account_Settings({super.key});
+
   @override
   Widget build(BuildContext context) {
     final User user = User(
@@ -18,13 +20,13 @@ class Account_Settings extends StatelessWidget {
         backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Account Settings',
           style: TextStyle(
             color: Colors.black,
@@ -32,9 +34,9 @@ class Account_Settings extends StatelessWidget {
         ),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1.0),
+          preferredSize: const Size.fromHeight(1.0),
           child: Container(
-            color: Color(0xFFCCCCCC), // Set the color to #CCCCCC
+            color: const Color(0xFFCCCCCC), // Set the color to #CCCCCC
             height: 1.0,
           ),
         ),
@@ -60,7 +62,7 @@ class Account_Settings extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => ChangePasswordScreen()),
+                MaterialPageRoute(builder: (context) => const ChangePasswordScreen()),
               );
             },
             isOrange: false, // Set the orange color for this text
@@ -73,15 +75,15 @@ class Account_Settings extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) {
                   return AlertDialog(
-                    title: Text('Confirm Deletion'),
+                    title: const Text('Confirm Deletion'),
                     content:
-                        Text('Are you sure you want to delete your account?'),
+                        const Text('Are you sure you want to delete your account?'),
                     actions: <Widget>[
                       TextButton(
                         onPressed: () {
                           Navigator.of(context).pop(); // Close the dialog
                         },
-                        child: Text(
+                        child: const Text(
                           'Cancel',
                           style: TextStyle(color: Color(0xFFE16A3D)),
                         ),
@@ -92,7 +94,7 @@ class Account_Settings extends StatelessWidget {
                           print('Delete Account confirmed');
                           Navigator.of(context).pop(); // Close the dialog
                         },
-                        child: Text(
+                        child: const Text(
                           'Delete',
                           style: TextStyle(color: Color(0xFFE16A3D)),
                         ),
@@ -121,7 +123,7 @@ class ActionBox extends StatelessWidget {
   final VoidCallback? onPressed;
   final bool isOrange; // New property to indicate whether to use orange color
 
-  ActionBox({
+  const ActionBox({super.key, 
     required this.title,
     required this.imagePath,
     this.onPressed,
@@ -134,13 +136,13 @@ class ActionBox extends StatelessWidget {
       onTap: onPressed,
       child: Container(
         height: 70.0, // Set the default height for all boxes
-        margin: EdgeInsets.all(8.0), // Smaller margin
-        padding: EdgeInsets.all(8.0), // Smaller padding
+        margin: const EdgeInsets.all(8.0), // Smaller margin
+        padding: const EdgeInsets.all(8.0), // Smaller padding
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(8.0), // Smaller border radius
           border: Border.all(
-              color: Color(0xFFCCCCCC)), // Set border color to #CCCCCC
+              color: const Color(0xFFCCCCCC)), // Set border color to #CCCCCC
         ),
         child: Row(
           children: [
@@ -149,17 +151,17 @@ class ActionBox extends StatelessWidget {
               width: 27.0, // Smaller width
               height: 27.0, // Smaller height
               color: isOrange
-                  ? Color(0xFFE16A3D)
+                  ? const Color(0xFFE16A3D)
                   : Colors.black, // Use orange color if specified
             ),
-            SizedBox(width: 8.0), // Smaller spacing
+            const SizedBox(width: 8.0), // Smaller spacing
             Text(
               title,
               style: TextStyle(
                 fontSize: 14.0, // Smaller font size
                 fontWeight: FontWeight.bold,
                 color: isOrange
-                    ? Color(0xFFE16A3D)
+                    ? const Color(0xFFE16A3D)
                     : Colors.black, // Use orange color if specified
               ),
             ),

@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
+  const ChangePasswordScreen({super.key});
+
   @override
   _ChangePasswordScreenState createState() => _ChangePasswordScreenState();
 }
@@ -12,7 +14,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Change Password',
           style: TextStyle(color: Colors.black),
         ),
@@ -20,7 +22,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -32,13 +34,13 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildPasswordInput('Old Password'),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildPasswordInput('New Password'),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildPasswordInput('Confirm Password'),
-              SizedBox(height: 40.0),
+              const SizedBox(height: 40.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
@@ -47,10 +49,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       // TODO: Implement cancel logic
                     },
                     style: OutlinedButton.styleFrom(
-                      side: BorderSide(color: Color(0xFFE16A3D)),
-                      minimumSize: Size(120, 50),
+                      side: const BorderSide(color: Color(0xFFE16A3D)),
+                      minimumSize: const Size(120, 50),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Cancel',
                       style: TextStyle(
                         color: Color(0xFFE16A3D),
@@ -63,11 +65,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                       _showChangePasswordDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFE16A3D),
-                      onPrimary: Colors.white,
-                      minimumSize: Size(120, 50),
+                      foregroundColor: Colors.white, backgroundColor: const Color(0xFFE16A3D),
+                      minimumSize: const Size(120, 50),
                     ),
-                    child: Text('Change'),
+                    child: const Text('Change'),
                   ),
                 ],
               ),
@@ -83,7 +84,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       obscureText: !_isPasswordVisible,
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: Colors.black),
+        labelStyle: const TextStyle(color: Colors.black),
         suffixIcon: IconButton(
           icon: Icon(
             _isPasswordVisible ? Icons.visibility : Icons.visibility_off,
@@ -95,10 +96,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
             });
           },
         ),
-        focusedBorder: UnderlineInputBorder(
+        focusedBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Color(0xFFE16A3D)),
         ),
-        enabledBorder: UnderlineInputBorder(
+        enabledBorder: const UnderlineInputBorder(
           borderSide: BorderSide(color: Colors.black),
         ),
       ),
@@ -114,10 +115,10 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
           ),
-          title: Text('Password Changed Successfully'),
+          title: const Text('Password Changed Successfully'),
           content: ClipRRect(
             borderRadius: BorderRadius.circular(10.0), // Adjust the radius as needed
-            child: Container(
+            child: SizedBox(
               height: 200, // Adjust the height based on your design
               width: 200,  // Adjust the width based on your design
               child: Column(
@@ -128,8 +129,8 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     height: 120,
                     width: 120,
                   ),
-                  SizedBox(height: 16),
-                  Text(
+                  const SizedBox(height: 16),
+                  const Text(
                     'Your password has been changed successfully.',
                     textAlign: TextAlign.center,
                   ),
@@ -142,7 +143,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
               onPressed: () {
                 Navigator.of(context).pop();
               },
-              child: Text(
+              child: const Text(
                 'OK',
                 style: TextStyle(
                   color: Colors.black, // Change the text color to black

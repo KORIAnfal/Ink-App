@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
-import 'utils/CustomAppBar.dart';
 import 'Guest_Account.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Book {
   final String title;
@@ -76,7 +74,7 @@ class BookDetailsSellerScreen extends StatelessWidget {
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           color: Colors.black,
           onPressed: () {
             // Handle back button press
@@ -85,7 +83,7 @@ class BookDetailsSellerScreen extends StatelessWidget {
         ),
         actions: [
           IconButton(
-            icon: Icon(Icons.account_circle),
+            icon: const Icon(Icons.account_circle),
             color: Colors.black,
             iconSize: 30, // Set the size of the profile icon
             onPressed: () {
@@ -166,14 +164,14 @@ class BookDetailsSellerScreen extends StatelessWidget {
                       context: context,
                       builder: (BuildContext context) {
                         return AlertDialog(
-                          title: Text('Confirm Deletion'),
-                          content: Text('Are you sure  to delete this book?'),
+                          title: const Text('Confirm Deletion'),
+                          content: const Text('Are you sure  to delete this book?'),
                           actions: <Widget>[
                             TextButton(
                               onPressed: () {
                                 Navigator.of(context).pop(); // Close the dialog
                               },
-                              child: Text(
+                              child: const Text(
                                 'Cancel',
                                 style: TextStyle(color: Color(0xFFE16A3D)),
                               ),
@@ -184,7 +182,7 @@ class BookDetailsSellerScreen extends StatelessWidget {
                                 print('Delete Book confirmed');
                                 Navigator.of(context).pop(); // Close the dialog
                               },
-                              child: Text(
+                              child: const Text(
                                 'Delete',
                                 style: TextStyle(color: Color(0xFFE16A3D)),
                               ),

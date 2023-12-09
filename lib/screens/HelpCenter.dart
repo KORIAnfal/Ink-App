@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class HelpCenterScreen extends StatelessWidget {
+  const HelpCenterScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Help Center',
           style: TextStyle(color: Colors.black),
         ),
@@ -14,7 +16,7 @@ class HelpCenterScreen extends StatelessWidget {
         elevation: 2.0,
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
@@ -28,13 +30,13 @@ class HelpCenterScreen extends StatelessWidget {
             children: [
               _buildExpandableQuestion(
                   'What is Ink?', 'Ink is your ultimate hub for buying and exchanging books effortlessly. Our user-friendly platform ensures a seamless experience, allowing you to explore, purchase, and swap books with ease. Elevate your reading journey with Ink, your doorway to a world of books at your fingertips.'),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildExpandableQuestion(
                   'How to add a book?', 'To add a book on Ink, start by creating an account. Once logged in, hit the plus button. Capture a photo of your book or select one from your gallery. Fill in the necessary details about the book, and you are all set to post it for others to discover and potentially exchange. Happy sharing!'),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildExpandableQuestion(
                   'How to delete my account?', 'Deleting your account is permanent'),
-              SizedBox(height: 16.0),
+              const SizedBox(height: 16.0),
               _buildContactUs(),
             ],
           ),
@@ -54,7 +56,7 @@ class HelpCenterScreen extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -63,16 +65,9 @@ class HelpCenterScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
             child: Text(
               question,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
             ),
           ),
-          children: [
-            Divider(height: 1, color: Colors.grey), // Divider
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Text(answer),
-            ),
-          ],
           tilePadding: EdgeInsets.zero,
           collapsedTextColor: Colors.black,
           iconColor: Colors.black,
@@ -80,6 +75,13 @@ class HelpCenterScreen extends StatelessWidget {
           collapsedIconColor: Colors.black,
           backgroundColor: Colors.transparent,
           onExpansionChanged: (bool expanded) {},
+          children: [
+            const Divider(height: 1, color: Colors.grey), // Divider
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: Text(answer),
+            ),
+          ],
         ),
       ),
     );
@@ -96,21 +98,21 @@ class HelpCenterScreen extends StatelessWidget {
               color: Colors.grey.withOpacity(0.5),
               spreadRadius: 2,
               blurRadius: 5,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 8.0),
               child: Text(
                 'Contact Us',
                 style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
               ),
             ),
-            Divider(height: 1, color: Colors.grey), // Divider
+            const Divider(height: 1, color: Colors.grey), // Divider
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Column(
@@ -143,7 +145,7 @@ class HelpCenterScreen extends StatelessWidget {
       child: Row(
         children: [
           FaIcon(icon),
-          SizedBox(width: 8.0),
+          const SizedBox(width: 8.0),
           Text(value),
         ],
       ),
@@ -153,7 +155,7 @@ class HelpCenterScreen extends StatelessWidget {
   Widget _buildContainer({required Widget child}) 
   {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: child,
     ) ;
   }

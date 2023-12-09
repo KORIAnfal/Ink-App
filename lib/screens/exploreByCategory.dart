@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/CustomAppBar.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 
 class ExploreByCategory extends StatelessWidget {
@@ -39,7 +38,7 @@ class ExploreByCategory extends StatelessWidget {
       home: Scaffold(
         appBar: PreferredSize(
           preferredSize: AppBar().preferredSize,
-          child:  CustomAppBar(
+          child:  const CustomAppBar(
             userName: '',
         
           ),
@@ -57,8 +56,8 @@ class ExploreByCategory extends StatelessWidget {
               // Display list of categories in a GridView with 2 columns
               GridView.builder(
                 shrinkWrap: true,
-                physics: NeverScrollableScrollPhysics(),
-                gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                physics: const NeverScrollableScrollPhysics(),
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   
                 ),

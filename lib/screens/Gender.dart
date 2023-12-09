@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:ink/screens/UserMain.dart';
 
 class Gender extends StatefulWidget {
+  const Gender({super.key});
+
   @override
   _GenderState createState() => _GenderState();
 }
@@ -18,50 +20,50 @@ class _GenderState extends State<Gender> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              SizedBox(height: 35),
+              const SizedBox(height: 35),
               Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   IconButton(
-                    icon: Icon(Icons.arrow_back),
+                    icon: const Icon(Icons.arrow_back),
                     onPressed: () {
                       Navigator.pop(context);
                     },
                   ),
-                  SizedBox(width: 50),
-                  Text(
+                  const SizedBox(width: 50),
+                  const Text(
                     'What is Your Gender?',
                     style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               GenderOption(
                 index: 0,
                 selectedOption: selectedOption,
                 imagePath: 'assets/images/user_male.png',
                 label: 'Male',
-                textColor: Color(0xFF043E52),
+                textColor: const Color(0xFF043E52),
                 onSelected: () {
                   setState(() {
                     selectedOption = 0;
                   });
                 },
               ),
-              SizedBox(height: 60),
+              const SizedBox(height: 60),
               GenderOption(
                 index: 1,
                 selectedOption: selectedOption,
                 imagePath: 'assets/images/user_female.png',
                 label: 'Female',
-                textColor: Color(0xFF043E52),
+                textColor: const Color(0xFF043E52),
                 onSelected: () {
                   setState(() {
                     selectedOption = 1;
                   });
                 },
               ),
-              SizedBox(height: 200),
+              const SizedBox(height: 200),
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
@@ -78,7 +80,7 @@ class _GenderState extends State<Gender> {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                 ),
-                child: Padding(
+                child: const Padding(
                   padding: EdgeInsets.all(10),
                   child: Text(
                     'Done',
@@ -86,7 +88,7 @@ class _GenderState extends State<Gender> {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                   height: 40), // Add space between the last text and the button
             ],
           ),
@@ -104,7 +106,7 @@ class GenderOption extends StatelessWidget {
   final Color textColor;
   final VoidCallback onSelected;
 
-  GenderOption({
+  const GenderOption({super.key, 
     required this.index,
     required this.selectedOption,
     required this.imagePath,
@@ -129,7 +131,7 @@ class GenderOption extends StatelessWidget {
                   shape: BoxShape.circle,
                   border: Border.all(
                     color: index == selectedOption
-                        ? Color(0xFF3CBA00)
+                        ? const Color(0xFF3CBA00)
                         : Colors.transparent,
                     width: 3,
                   ),
@@ -145,14 +147,14 @@ class GenderOption extends StatelessWidget {
               ),
               if (index == selectedOption)
                 Container(
-                  margin: EdgeInsets.all(6),
+                  margin: const EdgeInsets.all(6),
                   width: 20,
                   height: 20,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Color(0xFF3CBA00),
                     shape: BoxShape.circle,
                   ),
-                  child: Center(
+                  child: const Center(
                     child: Icon(
                       Icons.check,
                       color: Colors.white,
@@ -162,7 +164,7 @@ class GenderOption extends StatelessWidget {
                 ),
             ],
           ),
-          SizedBox(height: 10),
+          const SizedBox(height: 10),
           Text(
             label,
             style: TextStyle(

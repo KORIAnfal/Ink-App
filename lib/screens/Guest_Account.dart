@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
-import 'utils/CustomAppBar.dart';
 import 'utils/user.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'UserMain.dart';
 
 import 'GeneralSettings.dart';
@@ -10,7 +8,6 @@ import 'GeneralSettings.dart';
 import 'CreateAccount.dart';
 import 'Login.dart';
 
-import 'dart:ui';
 
 final User user = User(
     name: 'User_003',
@@ -21,7 +18,9 @@ final User user = User(
   );
 
 class Guest_Account extends StatelessWidget {
-  bool isSignedUp = false; // Set to true if the user is signed up
+  bool isSignedUp = false;
+
+  Guest_Account({super.key}); // Set to true if the user is signed up
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +36,19 @@ class Guest_Account extends StatelessWidget {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
                   );
                 },
               ),
               title: Center(
                 child: Text(
                   user.name,
-                  style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color:Colors.black),
+                  style: const TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold , color:Colors.black),
                 ),
               ),
               actions: [
                 IconButton(
-                  icon: Icon(Icons.settings), // Change the icon to settings
+                  icon: const Icon(Icons.settings), // Change the icon to settings
                   color: Colors.black,
                   iconSize: 30,
                   onPressed: () {
@@ -78,8 +77,8 @@ class Guest_Account extends StatelessWidget {
                     height: 150.0,
                     width: 150.0,
                   ),
-                  SizedBox(height: 4.0), // Reduced the space
-                  Text(
+                  const SizedBox(height: 4.0), // Reduced the space
+                  const Text(
                     'Guest',
                     style: TextStyle(
                       fontSize: 18.0,
@@ -123,37 +122,37 @@ class Guest_Account extends StatelessWidget {
             ),
 
             // Divider
-            Divider(
+            const Divider(
               color: Colors.grey,
               thickness: 0.5,
             ),
 
             // Space between Divider and Seller Account Text
-            SizedBox(height: 14.0), // Adjust the space as needed
+            const SizedBox(height: 14.0), // Adjust the space as needed
 
             // Seller Account Text
-            Text(
+            const Text(
               'Seller Account',
               style: TextStyle(
                 fontSize: 20.0,
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 8.0), // Adjust the space as needed
+            const SizedBox(height: 8.0), // Adjust the space as needed
 
             // Seller Account Description
-            Text(
+            const Text(
               'To sell your books you need to create',
               textAlign: TextAlign.center,
             ),
 
-            Text(
+            const Text(
               'a seller account.',
               textAlign: TextAlign.center,
             ),
 
             // Space for Image
-            SizedBox(height: 20.0), // Reduced the space
+            const SizedBox(height: 20.0), // Reduced the space
             Image.asset(
               'assets/images/book_pile.png',
               height: 75.0,
@@ -162,35 +161,35 @@ class Guest_Account extends StatelessWidget {
             ),
 
             // Button - Create Account
-            SizedBox(height: 16.0),
+            const SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: () {
                 // Navigate to the CreateAccount screen
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => CreateAccountScreen()),
+                      builder: (context) => const CreateAccountScreen()),
                 );
               },
               style: ButtonStyle(
                 backgroundColor:
-                    MaterialStateProperty.all<Color>(Color(0xFFE16A3D)),
+                    MaterialStateProperty.all<Color>(const Color(0xFFE16A3D)),
               ),
-              child: Text('Create Account'),
+              child: const Text('Create Account'),
             ),
 
             // Already Have an Account Text
-            SizedBox(height: 1.0),
+            const SizedBox(height: 1.0),
             GestureDetector(
               onTap: () {
                 // Navigate to the Login screen
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => LoginScreen()),
+                  MaterialPageRoute(builder: (context) => const LoginScreen()),
                 );
               },
               child: RichText(
-                text: TextSpan(
+                text: const TextSpan(
                   style: TextStyle(
                     fontSize: 14.0,
                     color: Colors.black,
@@ -216,7 +215,7 @@ class Guest_Account extends StatelessWidget {
           ],
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 
@@ -237,12 +236,12 @@ class Guest_Account extends StatelessWidget {
               width: 24.0,
             ),
           ),
-          SizedBox(width: 8.0),
+          const SizedBox(width: 8.0),
           Opacity(
             opacity: isSignedUp ? 1.0 : 0.5, // Adjust the opacity value
             child: Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.grey, // Change text color to black
                 fontSize: 12.0,
               ),

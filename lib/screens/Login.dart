@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'CreateAccount.dart';
 
 class LoginScreen extends StatelessWidget {
+  const LoginScreen({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,11 +19,11 @@ class LoginScreen extends StatelessWidget {
                 Colors.white.withOpacity(0.5), // Adjust the opacity as needed
           ),
           SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
+            padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   'Welcome',
                   style: TextStyle(
                     color: Colors.black, // Change text color to black
@@ -29,9 +31,9 @@ class LoginScreen extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
-                SizedBox(height: 30.0),
+                const SizedBox(height: 30.0),
                 TextFormField(
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Email',
                     hintStyle: TextStyle(
                         color: Colors.black), // Change text color to black
@@ -47,13 +49,13 @@ class LoginScreen extends StatelessWidget {
                               .black), // Change focused border color to black
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black), // Change text color to black
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 TextFormField(
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Password',
                     hintStyle: TextStyle(
                         color: Colors.black), // Change text color to black
@@ -69,10 +71,10 @@ class LoginScreen extends StatelessWidget {
                               .black), // Change focused border color to black
                     ),
                   ),
-                  style: TextStyle(
+                  style: const TextStyle(
                       color: Colors.black), // Change text color to black
                 ),
-                SizedBox(height: 20.0),
+                const SizedBox(height: 20.0),
                 Center(
                   // Center the login button
                   child: ElevatedButton(
@@ -80,21 +82,21 @@ class LoginScreen extends StatelessWidget {
                       _showLoginSuccessDialog(context);
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFE16A3D), // Use the specified color
-                      padding: EdgeInsets.symmetric(horizontal: 20.0),
+                      backgroundColor: const Color(0xFFE16A3D), // Use the specified color
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     ),
-                    child: Text(
+                    child: const Text(
                       'Login',
                       style: TextStyle(
                           color: Colors.black), // Change text color to black
                     ),
                   ),
                 ),
-                SizedBox(height: 10.0),
+                const SizedBox(height: 10.0),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Text(
+                    const Text(
                       "Don't have an account? ",
                       style: TextStyle(
                           color: Colors.black), // Change text color to black
@@ -105,10 +107,10 @@ class LoginScreen extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => CreateAccountScreen()),
+                              builder: (context) => const CreateAccountScreen()),
                         );
                       },
-                      child: Text(
+                      child: const Text(
                         'Create an account',
                         style: TextStyle(
                           color: Colors.black,
@@ -138,24 +140,24 @@ class LoginScreen extends StatelessWidget {
                 'assets/images/book_user.png', // Add your success illustration
                 height: 100.0,
               ),
-              SizedBox(height: 20.0),
-              Text(
+              const SizedBox(height: 20.0),
+              const Text(
                 'Login Successful!',
                 style: TextStyle(
                   fontSize: 20.0,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              SizedBox(height: 20.0),
+              const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
                   Navigator.pop(context); // Close the dialog
                 },
                 style: ElevatedButton.styleFrom(
-                  primary: Color(0xFFE16A3D), // Use the specified color
-                  padding: EdgeInsets.symmetric(horizontal: 20.0),
+                  backgroundColor: const Color(0xFFE16A3D), // Use the specified color
+                  padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 ),
-                child: Text('OK'),
+                child: const Text('OK'),
               ),
             ],
           ),
