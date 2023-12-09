@@ -236,7 +236,7 @@ class SellerAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Image.asset(
                     'assets/images/${book.imagePath}',
-                    height: 122.5,
+                    height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
