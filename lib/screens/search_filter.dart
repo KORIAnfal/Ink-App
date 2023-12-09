@@ -18,11 +18,11 @@ class _Search_FilterState extends State<Search_Filter> {
   List<String> Type = ['Sell', 'Exchange'];
   List<String> Wilaya = ['Alger'];
   List<String> Region = ['Siddi Abdellah'];
-  String? selectedcategory = null;
-  String? selectedlanguage = null;
-  String? selectedtype = null;
-  String? selectedwilaya = null;
-  String? selectedregion = null;
+  String? selectedcategory;
+  String? selectedlanguage;
+  String? selectedtype;
+  String? selectedwilaya;
+  String? selectedregion;
 
   List<String> images = [
     'assets/images/poster1.jpg',
@@ -53,7 +53,7 @@ class _Search_FilterState extends State<Search_Filter> {
             onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => MainScreen()),
+                    MaterialPageRoute(builder: (context) => const MainScreen()),
                   );
             },
           ),
@@ -76,12 +76,12 @@ class _Search_FilterState extends State<Search_Filter> {
                       height: 40,
                       padding: const EdgeInsets.all(8),
                       decoration: ShapeDecoration(
-                        color: Color(0x35016A6D),
+                        color: const Color(0x35016A6D),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(20),
                         ),
                       ),
-                      child: Row(
+                      child: const Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
                             Icon(
@@ -96,7 +96,7 @@ class _Search_FilterState extends State<Search_Filter> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   width: 25,
                 )
               ],
@@ -125,7 +125,7 @@ class _Search_FilterState extends State<Search_Filter> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       width: 1, color: Color(0xFF043E52))),
                             ),
                             items: Category.map(
@@ -133,10 +133,10 @@ class _Search_FilterState extends State<Search_Filter> {
                                     value: item,
                                     child: Text(
                                       item,
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ))).toList(),
                             value: null,
-                            hint: Text('Category'),
+                            hint: const Text('Category'),
                             onChanged: (item) =>
                                 setState(() => selectedcategory = item),
                           ),
@@ -151,7 +151,7 @@ class _Search_FilterState extends State<Search_Filter> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       width: 1, color: Color(0xFF043E52))),
                             ),
                             items: Language.map(
@@ -159,10 +159,10 @@ class _Search_FilterState extends State<Search_Filter> {
                                     value: item,
                                     child: Text(
                                       item,
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ))).toList(),
                             value: null,
-                            hint: Text('Language'),
+                            hint: const Text('Language'),
                             onChanged: (item) =>
                                 setState(() => selectedlanguage = item),
                           ),
@@ -177,17 +177,17 @@ class _Search_FilterState extends State<Search_Filter> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       width: 1, color: Color(0xFF043E52))),
                             ),
                             items: Type.map((item) => DropdownMenuItem<String?>(
                                 value: item,
                                 child: Text(
                                   item,
-                                  style: TextStyle(fontSize: 15),
+                                  style: const TextStyle(fontSize: 15),
                                 ))).toList(),
                             value: null,
-                            hint: Text('Type'),
+                            hint: const Text('Type'),
                             onChanged: (item) =>
                                 setState(() => selectedtype = item),
                           ),
@@ -203,7 +203,7 @@ class _Search_FilterState extends State<Search_Filter> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       width: 1, color: Color(0xFF043E52))),
                             ),
                             items:
@@ -211,10 +211,10 @@ class _Search_FilterState extends State<Search_Filter> {
                                     value: item,
                                     child: Text(
                                       item,
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ))).toList(),
                             value: null,
-                            hint: Text('Wilaya'),
+                            hint: const Text('Wilaya'),
                             onChanged: (item) =>
                                 setState(() => selectedwilaya = item),
                           ),
@@ -229,7 +229,7 @@ class _Search_FilterState extends State<Search_Filter> {
                             decoration: InputDecoration(
                               enabledBorder: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(7),
-                                  borderSide: BorderSide(
+                                  borderSide: const BorderSide(
                                       width: 1, color: Color(0xFF043E52))),
                             ),
                             items:
@@ -237,10 +237,10 @@ class _Search_FilterState extends State<Search_Filter> {
                                     value: item,
                                     child: Text(
                                       item,
-                                      style: TextStyle(fontSize: 15),
+                                      style: const TextStyle(fontSize: 15),
                                     ))).toList(),
                             value: null,
-                            hint: Text('Region'),
+                            hint: const Text('Region'),
                             onChanged: (item) =>
                                 setState(() => selectedregion = item),
                           ),
@@ -264,7 +264,7 @@ class _Search_FilterState extends State<Search_Filter> {
                 child: SizedBox(
                   height: screenHeight * 0.3,
                   width: screenWidth * 0.95,
-                  child: ImageSlider(),
+                  child: const ImageSlider(),
                 ),
               ),
               SizedBox(
@@ -273,8 +273,8 @@ class _Search_FilterState extends State<Search_Filter> {
               ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
               Container(
                 alignment: Alignment.centerLeft,
-                padding: EdgeInsets.all(9.0),
-                child: Text(
+                padding: const EdgeInsets.all(9.0),
+                child: const Text(
                   "Explore by Category",
                   style: TextStyle(
                     color: Colors.black,
@@ -339,7 +339,7 @@ class CustomSearchDelegate extends SearchDelegate {
         onPressed: () {
           close(context, null);
         },
-        icon: Icon(Icons.arrow_back));
+        icon: const Icon(Icons.arrow_back));
   }
 
   @override
@@ -380,6 +380,8 @@ class CustomSearchDelegate extends SearchDelegate {
 }
 
 class ImageSlider extends StatefulWidget {
+  const ImageSlider({super.key});
+
   @override
   _ImageSliderState createState() => _ImageSliderState();
 }
@@ -409,13 +411,13 @@ class _ImageSliderState extends State<ImageSlider> {
 
   void _startAutoPlay() {
     // Automatically change the page every 2 seconds
-    Future.delayed(Duration(seconds: 2)).then((_) {
+    Future.delayed(const Duration(seconds: 2)).then((_) {
       if (_pageController.page == images.length - 1) {
         // If the current page is the last page, go back to the first page
         _pageController.jumpToPage(0);
       } else {
         _pageController.nextPage(
-          duration: Duration(milliseconds: 800),
+          duration: const Duration(milliseconds: 800),
           curve: Curves.fastOutSlowIn,
         );
       }
@@ -455,7 +457,7 @@ class _ImageSliderState extends State<ImageSlider> {
         (index) => Container(
           width: 8,
           height: 8,
-          margin: EdgeInsets.symmetric(horizontal: 4),
+          margin: const EdgeInsets.symmetric(horizontal: 4),
           decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: _currentPage == index ? Colors.blue : Colors.grey,
@@ -475,8 +477,9 @@ class _ImageSliderState extends State<ImageSlider> {
 class Mycard extends StatelessWidget {
   String path = '';
   String title = '';
-  Mycard({required this.path, required this.title});
+  Mycard({super.key, required this.path, required this.title});
 
+  @override
   Widget build(BuildContext context) {
     return Card(
       elevation: 5.0,
@@ -496,7 +499,7 @@ class Mycard extends StatelessWidget {
         child: Center(
           child: Text(
             title,
-            style: TextStyle(
+            style: const TextStyle(
               color: Color(0xFFE16A3D),
               fontSize: 24.0,
               fontWeight: FontWeight.bold,

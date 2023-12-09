@@ -11,7 +11,7 @@ class ISBNPopupDialog {
             borderRadius: BorderRadius.circular(16.0),
           ),
           child: Container(
-            padding: EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
               color: Colors.white,
@@ -20,7 +20,7 @@ class ISBNPopupDialog {
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Row(
+                  const Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -37,7 +37,7 @@ class ISBNPopupDialog {
                       ),
                     ],
                   ),
-                  Divider(
+                  const Divider(
                     color: Color.fromRGBO(0, 0, 0, 0.21),
                   ),
                   Column(
@@ -47,15 +47,15 @@ class ISBNPopupDialog {
                         width: 190.61,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: AssetImage('assets/images/scan.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -78,29 +78,29 @@ class ISBNPopupDialog {
                           ],
                         ),
                       ),
-                      SizedBox(height: 8.0),
-                      Text(
+                      const SizedBox(height: 8.0),
+                      const Text(
                         'OR',
                         style: TextStyle(
                           color: Color(0xFF016A6D),
                           fontSize: 23.0,
                         ),
                       ),
-                      SizedBox(height: 8.0),
+                      const SizedBox(height: 8.0),
                       Container(
                         height: 133.76,
                         width: 190.61,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(4.0),
-                          image: DecorationImage(
+                          image: const DecorationImage(
                             image: AssetImage('assets/images/enter.jpg'),
                             fit: BoxFit.cover,
                           ),
                         ),
                       ),
-                      SizedBox(height: 8.0),
+                      const SizedBox(height: 8.0),
                       RichText(
-                        text: TextSpan(
+                        text: const TextSpan(
                           style: TextStyle(
                             color: Colors.black,
                           ),
@@ -123,7 +123,7 @@ class ISBNPopupDialog {
                           ],
                         ),
                       ),
-                      SizedBox(height: 16.0),
+                      const SizedBox(height: 16.0),
                       Align(
   alignment: Alignment.centerRight,
   child: ElevatedButton(
@@ -134,13 +134,12 @@ class ISBNPopupDialog {
 },
 
     style: ElevatedButton.styleFrom(
-      primary: Colors.white,
-      onPrimary: Color(0xFFE6864E),
-      side: BorderSide(
+      foregroundColor: const Color(0xFFE6864E), backgroundColor: Colors.white,
+      side: const BorderSide(
         color: Color(0xFFE6864E),
       ),
     ),
-    child: Text('Next'),
+    child: const Text('Next'),
   ),
 ),
 

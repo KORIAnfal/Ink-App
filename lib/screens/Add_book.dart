@@ -34,12 +34,12 @@ class _Add_bookState extends State<Add_book> {
                       // Handle back button press
                       Navigator.pop(context); // This line will navigate back
                     },
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.arrow_back,
                       color: Colors.black,
                     )),
                 SizedBox(width: screenWidth * 0.22),
-                Text(
+                const Text(
                   'Add Book',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
@@ -48,7 +48,7 @@ class _Add_bookState extends State<Add_book> {
                 ),
                 SizedBox(width: screenWidth * 0.18),
                 GestureDetector(
-                  child: Text(
+                  child: const Text(
                     'Next',
                     style: TextStyle(
                         fontWeight: FontWeight.bold, color: Color(0xFFE16A3D)),
@@ -73,7 +73,7 @@ class _Add_bookState extends State<Add_book> {
             Container(
               height: screenHeight * 0.8576,
               width: double.infinity,
-              color: Color(0xFFFDE3CE),
+              color: const Color(0xFFFDE3CE),
               child: file == null
                   ? Image.asset(
                       'assets/images/add-image.png',
@@ -96,12 +96,12 @@ class _Add_bookState extends State<Add_book> {
                 Container(
                   width: 80.0,
                   height: 80.0,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.photo,
                       color: Color(0xFFE16A3D),
                       size: 30,
@@ -117,12 +117,12 @@ class _Add_bookState extends State<Add_book> {
                 Container(
                   width: 80.0, // Adjust the width and height as needed
                   height: 80.0,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
                   ),
                   child: IconButton(
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.camera_alt_rounded,
                       color: Color(0xFFE16A3D),
                       size: 30,

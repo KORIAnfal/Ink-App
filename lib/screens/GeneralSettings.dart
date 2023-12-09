@@ -8,7 +8,7 @@ import 'UserMain.dart';
 class GeneralSettings extends StatefulWidget {
   final User user;
 
-  GeneralSettings({Key? key, required this.user}) : super(key: key);
+  const GeneralSettings({Key? key, required this.user}) : super(key: key);
 
   @override
   _GeneralSettingsState createState() => _GeneralSettingsState();
@@ -26,14 +26,14 @@ class _GeneralSettingsState extends State<GeneralSettings> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
+        title: const Text(
           'Settings',
           style: TextStyle(color: Colors.black),
         ),
         centerTitle: true,
-        actions: [
+        actions: const [
           Padding(
-            padding: const EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(8.0),
           ),
         ],
         elevation: 0.5,
@@ -53,7 +53,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
         ),
       ),
       body: ListView(
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         children: [
           _buildSetting('View Profile', Icons.person, onTap: () {
             // Handle profile click
@@ -63,12 +63,12 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                   builder: (context) => SellerAccount.SellerAccount()),
             );
           }),
-          SizedBox(height: 16.0),
+          const SizedBox(height: 16.0),
           _buildSetting('Account Settings', Icons.settings, onTap: () {
             // Handle account settings click
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => Account_Settings()),
+              MaterialPageRoute(builder: (context) => const Account_Settings()),
             );
           }),
           _buildLanguageSetting(),
@@ -76,10 +76,10 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             // Handle help center click
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => HelpCenterScreen()),
+              MaterialPageRoute(builder: (context) => const HelpCenterScreen()),
             );
           }),
-          SizedBox(height: 250.0),
+          const SizedBox(height: 250.0),
           _buildSetting('Logout', Icons.logout, onTap: () {
             // Handle logout click
             _showLogoutDialog(context);
@@ -94,7 +94,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
       return GestureDetector(
         onTap: onTap as void Function()?,
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0),
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: Row(
             children: [
               ClipRRect(
@@ -105,19 +105,19 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                   height: 100.0,
                 ),
               ),
-              SizedBox(width: 16.0),
+              const SizedBox(width: 16.0),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     widget.user.name,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.w600,
                     ),
                   ),
-                  SizedBox(height: 8.0),
-                  Text(
+                  const SizedBox(height: 8.0),
+                  const Text(
                     'View Profile',
                     style: TextStyle(
                       color: Color(0xFFE16A3D),
@@ -134,21 +134,21 @@ class _GeneralSettingsState extends State<GeneralSettings> {
       return GestureDetector(
         onTap: onTap as void Function()?,
         child: Container(
-          margin: EdgeInsets.symmetric(vertical: 8.0),
+          margin: const EdgeInsets.symmetric(vertical: 8.0),
           child: Material(
             color: Colors.transparent,
             elevation: 0.5,
             borderRadius: BorderRadius.circular(8.0),
             child: InkWell(
-              onTap: onTap as void Function()?,
+              onTap: onTap,
               child: Container(
-                padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+                padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
                 decoration: BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.circular(8.0),
                   border: Border.all(color: Colors.grey),
                 ),
-                child: Row(
+                child: const Row(
                   children: [
                     Icon(Icons.logout, color: Color(0xFFE16A3D), size: 30.0),
                     SizedBox(width: 12.0),
@@ -168,7 +168,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
       );
     } else {
       return Container(
-        margin: EdgeInsets.symmetric(vertical: 8.0),
+        margin: const EdgeInsets.symmetric(vertical: 8.0),
         child: Material(
           color: Colors.transparent,
           elevation: 0.5,
@@ -176,7 +176,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
           child: InkWell(
             onTap: onTap as void Function()?,
             child: Container(
-              padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
               decoration: BoxDecoration(
                 color: Colors.white,
                 borderRadius: BorderRadius.circular(8.0),
@@ -185,23 +185,23 @@ class _GeneralSettingsState extends State<GeneralSettings> {
               child: Row(
                 children: [
                   Icon(icon, color: Colors.black, size: 30.0),
-                  SizedBox(width: 12.0),
+                  const SizedBox(width: 12.0),
                   Text(
                     title,
-                    style: TextStyle(
+                    style: const TextStyle(
                       fontSize: 16.0,
                     ),
                   ),
-                  SizedBox(width: 12.0),
-                  if (title == 'Language') Spacer(),
+                  const SizedBox(width: 12.0),
+                  if (title == 'Language') const Spacer(),
                   if (title == 'Language')
                     Row(
                       children: [
-                        Icon(Icons.language, color: Colors.black, size: 30.0),
-                        SizedBox(width: 8.0),
+                        const Icon(Icons.language, color: Colors.black, size: 30.0),
+                        const SizedBox(width: 8.0),
                         Text(
                           '$title $selectedLanguage',
-                          style: TextStyle(
+                          style: const TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 16.0,
                           ),
@@ -219,7 +219,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
 
   Widget _buildLanguageSetting() {
     return Container(
-      margin: EdgeInsets.symmetric(vertical: 8.0),
+      margin: const EdgeInsets.symmetric(vertical: 8.0),
       child: Material(
         color: Colors.transparent,
         elevation: 0.5,
@@ -229,13 +229,13 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             _showLanguageDialog(context);
           },
           child: Container(
-            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
+            padding: const EdgeInsets.symmetric(horizontal: 12.0, vertical: 8.0),
             decoration: BoxDecoration(
               color: Colors.white,
               borderRadius: BorderRadius.circular(8.0),
               border: Border.all(color: Colors.grey),
             ),
-            child: Row(
+            child: const Row(
               children: [
                 Icon(Icons.language, color: Colors.black, size: 30.0),
                 SizedBox(width: 12.0),
@@ -263,22 +263,22 @@ class _GeneralSettingsState extends State<GeneralSettings> {
           alignment: Alignment.bottomCenter,
           child: Material(
             color: Colors.transparent,
-            borderRadius: BorderRadius.only(
+            borderRadius: const BorderRadius.only(
               topLeft: Radius.circular(8.0),
               topRight: Radius.circular(8.0),
             ),
             child: Container(
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               color: Colors.white,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text('Logout', style: TextStyle(fontSize: 30.0)),
-                  Divider(color: Colors.grey),
-                  SizedBox(height: 12.0),
-                  Text('Are you sure you want to logout?',
+                  const Text('Logout', style: TextStyle(fontSize: 30.0)),
+                  const Divider(color: Colors.grey),
+                  const SizedBox(height: 12.0),
+                  const Text('Are you sure you want to logout?',
                       style: TextStyle(fontSize: 20.0)),
-                  SizedBox(height: 20.0),
+                  const SizedBox(height: 20.0),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -287,16 +287,15 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                                builder: (context) => MainScreen()),
+                                builder: (context) => const MainScreen()),
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          primary: Color(0xFFE16A3D),
-                          onPrimary: Colors.white,
+                          foregroundColor: Colors.white, backgroundColor: const Color(0xFFE16A3D),
                           minimumSize:
-                              Size(150.0, 50.0), // Adjusted minimumSize
+                              const Size(150.0, 50.0), // Adjusted minimumSize
                         ),
-                        child: Row(
+                        child: const Row(
                           children: [
                             Icon(Icons.logout, color: Colors.white, size: 30.0),
                             SizedBox(width: 12.0),
@@ -307,19 +306,19 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                           ],
                         ),
                       ),
-                      SizedBox(width: 20.0),
+                      const SizedBox(width: 20.0),
                       OutlinedButton(
                         onPressed: () {
                           Navigator.pop(context);
                         },
                         style: OutlinedButton.styleFrom(
-                          side: BorderSide(
+                          side: const BorderSide(
                               color: Colors.black), // Changed to black
                           minimumSize:
-                              Size(150.0, 50.0), // Adjusted minimumSize
-                          padding: EdgeInsets.symmetric(horizontal: 20.0),
+                              const Size(150.0, 50.0), // Adjusted minimumSize
+                          padding: const EdgeInsets.symmetric(horizontal: 20.0),
                         ),
-                        child: Row(
+                        child: const Row(
                           children: [
                             SizedBox(width: 12.0),
                             Text(
@@ -347,7 +346,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          title: Text('Select Language'),
+          title: const Text('Select Language'),
           content: SingleChildScrollView(
             child: Column(
               children: languages.map((language) {
@@ -355,7 +354,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
                   title: Text(language,
                       style: TextStyle(
                           color: language == selectedLanguage
-                              ? Color(0xFFE16A3D)
+                              ? const Color(0xFFE16A3D)
                               : Colors.black)),
                   onTap: () {
                     setState(() {

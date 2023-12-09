@@ -1,8 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'Add_book.dart';
 import 'Seller_Account.dart' as SellerAccount;
-import 'package:ink/screens/Seller_Account.dart';
 
 
 
@@ -56,12 +54,12 @@ class _Add_book_postState extends State<Add_book_post> {
                     // Handle back button press
                     Navigator.pop(context); // This line will navigate back
                   },
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back,
                     color: Colors.black,
                   )),
               SizedBox(width: screenWidth * 0.22),
-              Text(
+              const Text(
                 'Add Book',
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
@@ -82,7 +80,7 @@ class _Add_book_postState extends State<Add_book_post> {
 
 
                 },
-                child: Text(
+                child: const Text(
                   'Post',
                   style: TextStyle(
                       fontWeight: FontWeight.bold, color: Color(0xFFE16A3D)),
@@ -106,7 +104,7 @@ class _Add_book_postState extends State<Add_book_post> {
                   width: screenWidth * 0.3,
                 ),
                 Container(
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.grey,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(15),
@@ -122,7 +120,7 @@ class _Add_book_postState extends State<Add_book_post> {
                             widget.imageFile!,
                             fit: BoxFit.fill,
                           )
-                        : Center(
+                        : const Center(
                             child: Text('No Image Selected'),
                           )),
               ],
@@ -132,17 +130,17 @@ class _Add_book_postState extends State<Add_book_post> {
             ),
             Container(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(children: [
                   TextField(
                     controller: controllers[0],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Book Title:',
                     ),
                   ),
                   TextField(
                     controller: controllers[1],
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Author:',
                     ),
                   ),
@@ -151,7 +149,7 @@ class _Add_book_postState extends State<Add_book_post> {
                     maxLines: null,
                     keyboardType: TextInputType.multiline,
                     textInputAction: TextInputAction.newline,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Description:',
                     ),
                   ),
@@ -163,7 +161,7 @@ class _Add_book_postState extends State<Add_book_post> {
             ),
             Container(
               child: Column(children: [
-                Text(
+                const Text(
                   "Book Categories:",
                   style: TextStyle(
                     fontSize: 20,
@@ -193,7 +191,7 @@ class _Add_book_postState extends State<Add_book_post> {
             ),
             Container(
               child: Column(children: [
-                Text(
+                const Text(
                   "Post Type:",
                   style: TextStyle(
                     fontSize: 20,
@@ -218,12 +216,12 @@ class _Add_book_postState extends State<Add_book_post> {
             ),
             Container(
               child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16.0),
+                padding: const EdgeInsets.symmetric(horizontal: 16.0),
                 child: Column(children: [
                   TextField(
                     controller: priceController,
                     keyboardType: TextInputType.number,
-                    decoration: InputDecoration(
+                    decoration: const InputDecoration(
                       labelText: 'Price:',
                     ),
                   ),
@@ -259,7 +257,7 @@ class _Add_book_postState extends State<Add_book_post> {
                 (Set<MaterialState> states) {
                   if (states.contains(MaterialState.pressed) ||
                       selectedButtonIndices.contains(index)) {
-                    return Color(0xFFE16A3D);
+                    return const Color(0xFFE16A3D);
                   } else if (states.contains(MaterialState.hovered)) {
                     return Colors.white;
                   }

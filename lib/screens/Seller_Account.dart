@@ -88,20 +88,31 @@ class SellerAccount extends StatelessWidget {
           children: [
             buildUserProfileSection(user),
             const SizedBox(height: 40.0),
-            const SizedBox(height: 20.0),
             booksRow1.isEmpty && booksRow2.isEmpty
-                ? const Center(
-                    child: Text(
-                      'No books available.',
-                      style: TextStyle(
-                          fontSize: 18.0, fontWeight: FontWeight.bold),
+                ? Column(
+              children: [
+                Image.asset(
+                  'assets/images/empty.png', // Replace with the path to your no books image
+                  height: 300, // Adjust the height as needed
+                  width: 400, // Adjust the width as needed
+                ),
+                    const Text(
+                      "No available Books",
+                      style: TextStyle(fontSize: 16, color: Color(0xFF545454)),
                     ),
-                  )
+                    const Text(
+                      "in this account",
+                      style: TextStyle(fontSize: 16, color: Color(0xFF545454)),
+                    ),
+                     const SizedBox(height: 50.0),
+
+              ],
+            )
                 : Column(
                     children: [
-                      buildBookImagesContainer(booksRow1),
+                      buildBookImagesContainer(booksRow1,context),
                       const SizedBox(height: 20.0),
-                      buildBookImagesContainer(booksRow2),
+                      buildBookImagesContainer(booksRow2,context),
                     ],
                   ),
           ],
@@ -189,7 +200,7 @@ class SellerAccount extends StatelessWidget {
     );
   }
 
-  Widget buildBookImagesContainer(List<Book> books) {
+ Widget buildBookImagesContainer(List<Book> books, BuildContext context) {
   if (books.isEmpty) {
     return const Center(
       child: Text(
@@ -202,39 +213,38 @@ class SellerAccount extends StatelessWidget {
   return Container(
     width: double.infinity,
     padding: const EdgeInsets.symmetric(horizontal: 16.0),
-    child: GridView.builder(
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 3,
-        crossAxisSpacing: 3.0,
-        mainAxisSpacing: 3.0,
-      ),
-      itemCount: books.length,
-      itemBuilder: (context, index) {
-        return GestureDetector(
-          onTap: () {
-            // Navigate to BookDetailsSellerScreen when a book is tapped
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => BookDetailsSellerScreen(
-                  bookPath: books[index].imagePath,
+    child: Wrap(
+      spacing: 8.0,
+      runSpacing: 8.0,
+      children: books
+          .map(
+            (book) => GestureDetector(
+              onTap: () {
+                // Navigate to BookDetailsSellerScreen when a book is tapped
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BookDetailsSellerScreen(
+                      bookPath: book.imagePath,
+                    ),
+                  ),
+                );
+              },
+              child: SizedBox(
+                width: (MediaQuery.of(context).size.width - 40) / 3.1, // Adjust the width for three books in a row
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(15.0),
+                  child: Image.asset(
+                    'assets/images/${book.imagePath}',
+                    height: 122.5,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            );
-          },
-          child: ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: Image.asset(
-              'assets/images/${books[index].imagePath}',
-              height: 122.5,
-              width: 100.0,
-              fit: BoxFit.contain,
             ),
-          ),
-        );
-      },
+          )
+          .toList(),
     ),
   );
 }

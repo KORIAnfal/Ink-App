@@ -8,6 +8,8 @@ import 'Seller_Account.dart' as SellerAccount;
 
 
 class CreateAccountScreen extends StatefulWidget {
+  const CreateAccountScreen({super.key});
+
   @override
   _CreateAccountScreenState createState() => _CreateAccountScreenState();
 }
@@ -34,9 +36,9 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   PickedFile? pickedImage;
 
   Future<void> _pickImage() async {
-    final ImagePicker _picker = ImagePicker();
+    final ImagePicker picker = ImagePicker();
     final PickedFile? image =
-        await _picker.getImage(source: ImageSource.gallery);
+        await picker.getImage(source: ImageSource.gallery);
 
     setState(() {
       pickedImage = image;
@@ -50,12 +52,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         backgroundColor: Colors.white,
         elevation: 0.5,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: Colors.black),
+          icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
             Navigator.pop(context);
           },
         ),
-        title: Text(
+        title: const Text(
           'Create an account',
           style: TextStyle(color: Colors.black),
         ),
@@ -64,10 +66,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         key: _formKey,
         child: SingleChildScrollView(
           child: Padding(
-            padding: EdgeInsets.symmetric(horizontal: 16.0),
+            padding: const EdgeInsets.symmetric(horizontal: 16.0),
             child: Column(
               children: [
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Centered avatar image
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -75,7 +77,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     Container(
                       width: 100.0,
                       height: 100.0,
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         shape: BoxShape.circle,
                         // Removed the Border property to remove the blue border
                       ),
@@ -84,14 +86,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                         backgroundImage: pickedImage != null
                             ? FileImage(File(pickedImage!.path))
                                 as ImageProvider<Object>?
-                            : AssetImage('assets/images/user_male.png'),
+                            : const AssetImage('assets/images/user_male.png'),
                       ),
                     ),
-                    SizedBox(height: 16.0),
+                    const SizedBox(height: 16.0),
                     // Text for uploading profile photo
                     GestureDetector(
                       onTap: _pickImage,
-                      child: Text(
+                      child: const Text(
                         'Upload Profile Photo',
                         style: TextStyle(
                           color: Color(0xFFE16A3D),
@@ -101,7 +103,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ],
                 ),
-                SizedBox(height: 24.0),
+                const SizedBox(height: 24.0),
                 // TextFields for name, phone, email, password, and password confirmation
                 _buildTextField('Full Name', nameController, Icons.person,
                     isPassword: false, isRequired: true),
@@ -119,10 +121,10 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 _buildTextField(
                     'Confirm Password', confirmPasswordController, Icons.lock,
                     isPassword: true, isRequired: true),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Rectangle for adding links
                 _buildLinksRectangle(),
-                SizedBox(height: 16.0),
+                const SizedBox(height: 16.0),
                 // Row for Cancel and Create Account buttons
                 Row(
                   children: [
@@ -142,18 +144,18 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                           ),
                           side: MaterialStateProperty.resolveWith<BorderSide>(
                             (Set<MaterialState> states) {
-                              return BorderSide(
+                              return const BorderSide(
                                   color: Color(0xFFE16A3D)); // Border color
                             },
                           ),
                         ),
-                        child: Text(
+                        child: const Text(
                           'Cancel',
                           style: TextStyle(color: Color(0xFFE16A3D)),
                         ),
                       ),
                     ),
-                    SizedBox(width: 16.0),
+                    const SizedBox(width: 16.0),
                     // Create Account Button
                     Expanded(
                       child: ElevatedButton(
@@ -163,14 +165,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                               MaterialStateProperty.resolveWith<Color>(
                             (Set<MaterialState> states) {
                               if (states.contains(MaterialState.pressed)) {
-                                return Color(0xFFE16A3D);
+                                return const Color(0xFFE16A3D);
                               }
-                              return Color(
+                              return const Color(
                                   0xFFE16A3D); // Use the same color for unpressed state
                             },
                           ),
                         ),
-                        child: Text('Create Account'),
+                        child: const Text('Create Account'),
                       ),
                     ),
                   ],
@@ -180,7 +182,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           ),
         ),
       ),
-      bottomNavigationBar: CustomBottomNavigationBar(),
+      bottomNavigationBar: const CustomBottomNavigationBar(),
     );
   }
 
@@ -190,15 +192,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       bool isRequired = false,
       TextInputType? keyboardType}) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           TextFormField(
             controller: controller,
             obscureText: isPassword,
@@ -242,17 +244,17 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               }
             },
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
               hintText: label,
-              suffixIcon: Icon(icon, color: Color(0xFFE16A3D)),
+              suffixIcon: Icon(icon, color: const Color(0xFFE16A3D)),
             ),
           ),
           // Display error message for confirm password
@@ -261,7 +263,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               padding: const EdgeInsets.only(top: 8.0, left: 12.0),
               child: Text(
                 _confirmPasswordError!,
-                style: TextStyle(color: Colors.red),
+                style: const TextStyle(color: Colors.red),
               ),
             ),
         ],
@@ -271,48 +273,48 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   Widget _buildLinksRectangle() {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(
+          const Text(
             'Social Media Links',
             style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           // Facebook Link TextField
           TextFormField(
             controller: facebookLinkController,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
               hintText: 'Add Facebook Link',
-              suffixIcon: Icon(Icons.link, color: Color(0xFFE16A3D)),
+              suffixIcon: const Icon(Icons.link, color: Color(0xFFE16A3D)),
             ),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           // Instagram Link TextField
           TextFormField(
             controller: instagramLinkController,
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
               hintText: 'Add Instagram Link',
-              suffixIcon: Icon(Icons.link, color: Color(0xFFE16A3D)),
+              suffixIcon: const Icon(Icons.link, color: Color(0xFFE16A3D)),
             ),
           ),
         ],
@@ -322,15 +324,15 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
 
   Widget _buildDropdown(String label, List<String> items, String selectedItem) {
     return Container(
-      margin: EdgeInsets.only(bottom: 16.0),
+      margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
             label,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
+            style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 16.0),
           ),
-          SizedBox(height: 8.0),
+          const SizedBox(height: 8.0),
           DropdownButtonFormField<String>(
             value: selectedItem,
             onChanged: (String? newValue) {
@@ -351,14 +353,14 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
               );
             }).toList(),
             decoration: InputDecoration(
-              contentPadding: EdgeInsets.all(16.0),
+              contentPadding: const EdgeInsets.all(16.0),
               border: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Colors.orange),
+                borderSide: const BorderSide(color: Colors.orange),
               ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(8.0),
-                borderSide: BorderSide(color: Color(0xFFE16A3D)),
+                borderSide: const BorderSide(color: Color(0xFFE16A3D)),
               ),
             ),
           ),
@@ -393,7 +395,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           content: SingleChildScrollView(
             child: Container(
               width: double.infinity,
-              padding: EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(16.0),
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: [
@@ -404,32 +406,32 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                       height: 120.0,
                     ),
                   ),
-                  SizedBox(height: 16.0),
-                  Icon(Icons.check_circle, color: Colors.green, size: 40.0),
-                  SizedBox(height: 16.0),
-                  Text(
+                  const SizedBox(height: 16.0),
+                  const Icon(Icons.check_circle, color: Colors.green, size: 40.0),
+                  const SizedBox(height: 16.0),
+                  const Text(
                     'Account Created Successfully',
                     style: TextStyle(
                       fontWeight: FontWeight.bold,
                       fontSize: 18.0,
                     ),
                   ),
-                  SizedBox(height: 16.0),
-                  Text(
+                  const SizedBox(height: 16.0),
+                  const Text(
                     'You can now add books with your new account.',
                     textAlign: TextAlign.center,
                     style: TextStyle(fontSize: 16.0),
                   ),
-                  SizedBox(height: 16.0),
+                  const SizedBox(height: 16.0),
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context); // Close the dialog
                       _navigateToSellerAccountScreen(); // Navigate to the seller account screen
                     },
                     style: ElevatedButton.styleFrom(
-                      primary: Color(0xFFE16A3D),
+                      backgroundColor: const Color(0xFFE16A3D),
                     ),
-                    child: Text('OK'),
+                    child: const Text('OK'),
                   ),
                 ],
               ),

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:ink/screens/Seller_Account.dart';
 import 'dart:io';
 import 'utils/user.dart';
 import 'Seller_Account1.dart' as SellerAccount1;
@@ -9,7 +8,7 @@ import 'Seller_Account1.dart' as SellerAccount1;
 class EditAccountScreen extends StatefulWidget {
   final User user;
 
-   EditAccountScreen({Key? key, required this.user}) : super(key: key);
+   const EditAccountScreen({Key? key, required this.user}) : super(key: key);
 
   @override
   _EditAccountScreenState createState() => _EditAccountScreenState();

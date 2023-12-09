@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ink/screens/Guest_Account.dart';
 import 'package:ink/screens/UserMain.dart';
-import 'package:ink/screens/Add_book.dart';
 import 'package:ink/screens/Seller_Account.dart';
 import 'package:ink/screens/search_filter.dart';
 import 'package:ink/screens/add_Isbn_dailog.dart';
@@ -62,13 +60,13 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 
     switch (index) {
       case 0:
-        _navigateAndSetIndex(MainScreen(), 0);
+        _navigateAndSetIndex(const MainScreen(), 0);
         break;
        case 1:
         ISBNPopupDialog.show(context);
         break;
        case 2:
-        _navigateAndSetIndex(Search_Filter(), 2);
+        _navigateAndSetIndex(const Search_Filter(), 2);
          break;
       case 3:
         _navigateAndSetIndex(SellerAccount(), 3);

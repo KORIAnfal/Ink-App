@@ -35,7 +35,7 @@ class ISBNScannerDialog extends StatefulWidget {
   final Function(String?) onScanned;
   final TextEditingController manualEntryController;
 
-  ISBNScannerDialog({
+  const ISBNScannerDialog({super.key, 
     required this.onScanned,
     required this.manualEntryController,
   });
@@ -60,11 +60,11 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
         borderRadius: BorderRadius.circular(12.0),
       ),
       child: Container(
-        padding: EdgeInsets.all(12.0),
+        padding: const EdgeInsets.all(12.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: Colors.white,
-          boxShadow: [
+          boxShadow: const [
             BoxShadow(
               color: Colors.grey,
               blurRadius: 4.0,
@@ -82,9 +82,9 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
                 _scanISBN(); // Call the scanning function when tapped
               },
             ),
-            SizedBox(height: 12.0),
-            _buildCenteredText('OR', Color(0xFF016A6D), 20.0, Colors.grey),
-            SizedBox(height: 12.0),
+            const SizedBox(height: 12.0),
+            _buildCenteredText('OR', const Color(0xFF016A6D), 20.0, Colors.grey),
+            const SizedBox(height: 12.0),
             _buildOptionWithInputField(
               icon: Icons.edit,
               hintText: 'Enter ISBN',
@@ -102,14 +102,14 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
 
   Future<void> _scanISBN() async {
     try {
-      final String? result = await FlutterBarcodeScanner.scanBarcode(
+      final String result = await FlutterBarcodeScanner.scanBarcode(
         '#ff6666',
         'Cancel',
         true,
         ScanMode.DEFAULT,
       );
 
-      if (!_disposed && result != null) {
+      if (!_disposed) {
         widget.onScanned(result);
       }
     } catch (e) {
@@ -127,16 +127,16 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
       child: Container(
         height: 80.0, // Set a fixed height
         width: double.infinity,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: Colors.white,
-          border: Border.all(color: Color(0xFFE16A3D)),
+          border: Border.all(color: const Color(0xFFE16A3D)),
           boxShadow: [
             BoxShadow(
               color: Colors.grey.withOpacity(0.2),
               blurRadius: 6.0,
-              offset: Offset(0, 3),
+              offset: const Offset(0, 3),
             ),
           ],
         ),
@@ -145,13 +145,13 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
           children: [
             Icon(
               icon,
-              color: Color(0xFFE16A3D),
+              color: const Color(0xFFE16A3D),
               size: 30.0,
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             Text(
               text,
-              style: TextStyle(
+              style: const TextStyle(
                 color: Colors.black,
                 fontSize: 18.0,
               ),
@@ -173,12 +173,12 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
       child: Container(
         height: 80.0, // Set a fixed height
         width: double.infinity,
-        padding: EdgeInsets.all(16.0),
+        padding: const EdgeInsets.all(16.0),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: Colors.white,
-          border: Border.all(color: Color(0xFFE16A3D)),
-          boxShadow: [
+          border: Border.all(color: const Color(0xFFE16A3D)),
+          boxShadow: const [
             BoxShadow(
               color: Colors.grey,
               blurRadius: 2.0,
@@ -191,10 +191,10 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
           children: [
             Icon(
               icon,
-              color: Color(0xFFE16A3D),
+              color: const Color(0xFFE16A3D),
               size: 30.0,
             ),
-            SizedBox(width: 8.0),
+            const SizedBox(width: 8.0),
             Flexible(
               child: TextField(
                 controller: controller,
@@ -237,7 +237,7 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
 class ISBNResultDialog extends StatelessWidget {
   final String isbn;
 
-  ISBNResultDialog({required this.isbn});
+  const ISBNResultDialog({super.key, required this.isbn});
 
   @override
   Widget build(BuildContext context) {
@@ -254,13 +254,13 @@ class ISBNResultDialog extends StatelessWidget {
       builder: (BuildContext context) {
         return AlertDialog(
           content: Container(
-            padding: EdgeInsets.all(12.0),
+            padding: const EdgeInsets.all(12.0),
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
                 Text(
                   'Book\'s ISBN Code: $isbn',
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
                   ),
@@ -273,7 +273,7 @@ class ISBNResultDialog extends StatelessWidget {
               onPressed: () {
                 Navigator.pop(context); // Close the ISBN popup
               },
-              child: Text('OK',
+              child: const Text('OK',
                style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
