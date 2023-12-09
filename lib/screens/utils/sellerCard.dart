@@ -5,7 +5,6 @@ class SellerCard extends StatelessWidget {
   final String sellerName;
   final String bookStatus;
   final double price;
-  final bool isAvailable;
   final bool isDeliveryAvailable;
   final String instagram;
   final String email;
@@ -17,7 +16,6 @@ class SellerCard extends StatelessWidget {
     required this.sellerName,
     required this.bookStatus,
     required this.price,
-    required this.isAvailable,
     required this.isDeliveryAvailable,
     required this.instagram,
     required this.email,
@@ -88,13 +86,7 @@ class SellerCard extends StatelessWidget {
                 color: Color(0xFFE16A3D), // You can change the color as needed
               ),
             ),
-            Text(
-              isAvailable ? 'Available' : 'Not Available',
-              style: TextStyle(
-                fontSize: 16.0,
-                color: isAvailable ? const Color(0xFF3CBA00) : const Color(0xFFE16A3D), // You can change the colors as needed
-              ),
-            ),
+            
             Text(
               isDeliveryAvailable ? 'Dilevery is Available' : 'Dilevery is not available',
               style: const TextStyle(
