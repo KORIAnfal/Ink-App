@@ -33,8 +33,7 @@ class SellerAccount extends StatelessWidget {
   final List<Book> booksRow2 = [
     Book(imagePath: '1.jpg'),
     Book(imagePath: '2.jpg'),
-    Book(imagePath: '5.jpg'),
-    // Add more books as needed
+  
   ];
 
   SellerAccount({Key? key}) : super(key: key);
@@ -236,7 +235,7 @@ class SellerAccount extends StatelessWidget {
                   borderRadius: BorderRadius.circular(15.0),
                   child: Image.asset(
                     'assets/images/${book.imagePath}',
-                    height: 122.5,
+                    height: 150,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
