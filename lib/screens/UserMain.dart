@@ -148,14 +148,14 @@ Widget _buildBookRow(List<String> bookPaths, List<bool> booksWithSpecialIcons, B
           (entry) => Flexible(
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
+                /*Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BookDetailsUserScreen(
                       bookPath: bookPaths[entry.key],
                     ),
                   ),
-                );
+                );*/
               },
               child: SizedBox(
                 width: (MediaQuery.of(context).size.width - 40) / 3.1, // Set the width for three books in a row
