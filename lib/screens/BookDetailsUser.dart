@@ -54,7 +54,8 @@ class BookDetailsUserScreen extends StatelessWidget {
             bottomNavigationBar: const CustomBottomNavigationBar(),
           );
         } else {
-          return Scaffold(
+          return const Scaffold(
+
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -137,7 +138,8 @@ class BookDetailsUserScreen extends StatelessWidget {
                   children: sellings.map((selling) => _buildSellerCard(selling)).toList(),
                 );
               } else {
-                return CircularProgressIndicator();
+                return const CircularProgressIndicator();
+
               }
             },
           ),

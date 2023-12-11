@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'sectionScreen.dart';
-import 'BookDetailsUser.dart';
 import 'Guest_Account.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 

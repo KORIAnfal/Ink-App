@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "420839265763",
+    "project_id": "my-ink-project-dbe41",
+    "storage_bucket": "my-ink-project-dbe41.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:420839265763:android:756a2885511b795ed13cd6",
+        "android_client_info": {
+          "package_name": "com.example.ink"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgx78lChRGr3MvdUZsG2NHVNyOwk011Po"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
