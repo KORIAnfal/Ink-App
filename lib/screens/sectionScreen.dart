@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'UserMain.dart';
 import 'Guest_Account.dart';
-import 'BookDetailsUser.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'utils/custom_bottom_navigation_bar.dart';
 
@@ -117,12 +116,12 @@ Widget _buildBookGrid(
           (entry) => Flexible(
             child: GestureDetector(
               onTap: () {
-                Navigator.push(
+               /* Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BookDetailsUserScreen(bookPath: bookPaths[entry.key]),
                   ),
-                );
+                );*/
               },
               child: SizedBox(
                 width: (MediaQuery.of(context).size.width - 40) / 3.1, // Set the width for three books in a row

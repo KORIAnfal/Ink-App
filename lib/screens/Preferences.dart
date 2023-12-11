@@ -26,7 +26,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                   onTap: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) =>  Gender()), // Use your home screen class
+                      MaterialPageRoute(builder: (context) =>  const Gender()), // Use your home screen class
                     );
                   },
                   child: const Align(
@@ -246,7 +246,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
                         onPressed: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) =>  Gender()), // Use your preferences screen class
+                            MaterialPageRoute(builder: (context) =>  const Gender()), // Use your preferences screen class
                           );
                         },
                         style: ElevatedButton.styleFrom(

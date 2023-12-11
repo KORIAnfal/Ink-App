@@ -18,6 +18,17 @@ dependencies:
   iconify_flutter: ^0.0.5
   carousel_slider: ^4.0.0
   flutter_barcode_scanner: ^2.0.0
+  sqflite: ^2.0.0
+  path: ^1.8.0
+  http: ^0.13.3
+  firebase_core: ^2.24.2
+  cloud_firestore: ^4.13.5
+  firebase_storage: ^11.5.5
+  firebase_messaging: ^14.7.8
+  firebase_auth: ^4.15.2
+  google_sign_in: ^6.1.6
+
+
 
   
 
