@@ -11,6 +11,8 @@ void main() async {
   runApp(const GetStartedApp());
 }
 
+
+
 class GetStartedApp extends StatelessWidget {
   const GetStartedApp({Key? key}) : super(key: key);
 
@@ -19,6 +21,7 @@ class GetStartedApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: GetStartedScreen(),
+
     );
   }
 }

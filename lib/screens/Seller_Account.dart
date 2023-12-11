@@ -33,8 +33,7 @@ class SellerAccount extends StatelessWidget {
   final List<Book> booksRow2 = [
     Book(imagePath: '1.jpg'),
     Book(imagePath: '2.jpg'),
-    Book(imagePath: '5.jpg'),
-    // Add more books as needed
+  
   ];
 
   SellerAccount({Key? key}) : super(key: key);

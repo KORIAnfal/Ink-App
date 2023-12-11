@@ -55,6 +55,7 @@ class BookDetailsUserScreen extends StatelessWidget {
           );
         } else {
           return const Scaffold(
+
             body: Center(
               child: CircularProgressIndicator(),
             ),
@@ -138,6 +139,7 @@ class BookDetailsUserScreen extends StatelessWidget {
                 );
               } else {
                 return const CircularProgressIndicator();
+
               }
             },
           ),

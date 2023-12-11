@@ -546,6 +546,8 @@ packages:
     version: "1.0.4"
   package_config:
     dependency: transitive
+  path:
+    dependency: "direct main"
     description:
       name: package_config
       sha256: "1c5b77ccc91e4823a5af61ee74e6b972db1ef98c2ff5a18d3161c982a55448bd"
