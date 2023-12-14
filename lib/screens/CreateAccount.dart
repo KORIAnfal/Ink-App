@@ -3,9 +3,7 @@ import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'utils/custom_bottom_navigation_bar.dart';
 import 'Seller_Account.dart' as SellerAccount;
-
-
-
+import 'package:ink/screens/utils/userAuthentication.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});
@@ -25,9 +23,11 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
       TextEditingController();
   final TextEditingController facebookLinkController = TextEditingController();
   final TextEditingController instagramLinkController = TextEditingController();
+  bool show_progress_bar = false;
+  String error_message = '';
 
   // Added lists for wilaya and region dropdowns
-   List<String> wilayas = ['Oran', 'Algries', 'Annaba'];
+  List<String> wilayas = ['Oran', 'Algries', 'Annaba'];
   List<String> regions = ['Region 1', 'Region 2', 'Region 3'];
 
   String selectedWilaya = 'Oran';
@@ -54,6 +54,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
+            action_handle_signup_button();
+
             Navigator.pop(context);
           },
         ),
@@ -159,7 +161,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     // Create Account Button
                     Expanded(
                       child: ElevatedButton(
-                        onPressed: _validateAndCreateAccount,
+                        onPressed: action_handle_signup_button,
                         style: ButtonStyle(
                           backgroundColor:
                               MaterialStateProperty.resolveWith<Color>(
@@ -386,6 +388,33 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     }
   }
 
+  void action_handle_signup_button() async {
+    show_progress_bar = true;
+    error_message = '';
+    setState(() {});
+
+    String result = await UserAuthentication.signupUser({
+      'accountname': nameController.text,
+      'email': emailController.text,
+      'password': passwordController.text,
+      'confirmPassword': confirmPasswordController.text,
+      'imagepath':'',
+      'InstaLink': instagramLinkController.text,
+      'FacebookLink': facebookLinkController.text,
+      'phonenumber':phoneController.text,
+
+      'wilaya': selectedWilaya,
+      'region': selectedRegion,
+    });
+    if (result != 'success') {
+      error_message = result;
+      show_progress_bar = false;
+      setState(() {});
+    } else {
+      Navigator.of(context).pop();
+    }
+  }
+
   void _showAccountCreatedDialog() {
     showDialog(
       context: context,
@@ -407,7 +436,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                     ),
                   ),
                   const SizedBox(height: 16.0),
-                  const Icon(Icons.check_circle, color: Colors.green, size: 40.0),
+                  const Icon(Icons.check_circle,
+                      color: Colors.green, size: 40.0),
                   const SizedBox(height: 16.0),
                   const Text(
                     'Account Created Successfully',
