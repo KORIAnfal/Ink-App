@@ -4,6 +4,7 @@ class User {
   final String phoneNumber;
   final String email;
   final String instagramAccount;
+  
 
   User({
     required this.name,
