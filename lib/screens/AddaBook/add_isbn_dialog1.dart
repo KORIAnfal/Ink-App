@@ -1,6 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
-
+import 'Add_book_post.dart';
 class ISBNPopupDialog1 {
   static void show(BuildContext context) {
     TextEditingController manualEntryController = TextEditingController();
@@ -10,9 +12,10 @@ class ISBNPopupDialog1 {
       builder: (BuildContext context) {
         return ISBNScannerDialog(
           onScanned: (scannedISBN) {
-            Navigator.pop(context); // Close the scanner dialog
+            Navigator.pop(context); 
             if (scannedISBN != null) {
-              _showISBNPopup(context, scannedISBN);
+              //_showISBNPopup(context, scannedISBN);
+              print(scannedISBN);
             }
           },
           manualEntryController: manualEntryController,
@@ -35,7 +38,8 @@ class ISBNScannerDialog extends StatefulWidget {
   final Function(String?) onScanned;
   final TextEditingController manualEntryController;
 
-  const ISBNScannerDialog({super.key, 
+  const ISBNScannerDialog({
+    super.key,
     required this.onScanned,
     required this.manualEntryController,
   });
@@ -52,9 +56,10 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
     super.dispose();
     _disposed = true;
   }
-
+File? file;
   @override
   Widget build(BuildContext context) {
+    
     return Dialog(
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(12.0),
@@ -64,34 +69,39 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(12.0),
           color: Colors.white,
-          boxShadow: const [
-            BoxShadow(
-              color: Colors.grey,
-              blurRadius: 4.0,
-              spreadRadius: 1.0,
-            ),
-          ],
+    
         ),
         child: Column(
           mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            SizedBox(height: 15.0),
+            Text(
+              'Enter ISBN number:',
+              style: TextStyle(
+                color: Colors.grey, // Set the text color to gray
+              ),
+            ),
+            SizedBox(height: 12.0),
+            _buildOptionWithInputField(
+              icon: Icons.arrow_forward,
+              hintText: 'Enter ISBN',
+              controller: widget.manualEntryController,
+              onTap: () {
+                String enteredISBN = widget.manualEntryController.text;
+                //widget.onScanned(enteredISBN);
+                Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => Add_book_post(imageFile: file,ISBN:int.parse(enteredISBN)),
+                      ),
+                      );
+              },
+            ),
+            const SizedBox(height: 15.0),
             _buildOption(
               icon: Icons.crop_free,
               text: 'Scan the ISBN',
               onTap: () {
                 _scanISBN(); // Call the scanning function when tapped
-              },
-            ),
-            const SizedBox(height: 12.0),
-            _buildCenteredText('OR', const Color(0xFF016A6D), 20.0, Colors.grey),
-            const SizedBox(height: 12.0),
-            _buildOptionWithInputField(
-              icon: Icons.edit,
-              hintText: 'Enter ISBN',
-              controller: widget.manualEntryController,
-              onTap: () {
-                String enteredISBN = widget.manualEntryController.text;
-                widget.onScanned(enteredISBN);
               },
             ),
           ],
@@ -110,7 +120,12 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
       );
 
       if (!_disposed) {
-        widget.onScanned(result);
+        //widget.onScanned(result);
+        String enteredISBN=result;
+         Navigator.push(context, MaterialPageRoute(
+                        builder: (context) => Add_book_post(imageFile: file,ISBN:int.parse(enteredISBN)),
+                      ),
+                      );
       }
     } catch (e) {
       print('Error during ISBN scanning: $e');
@@ -210,6 +225,7 @@ class _ISBNScannerDialogState extends State<ISBNScannerDialog> {
     );
   }
 
+
   Widget _buildCenteredText(
     String text,
     Color textColor,
@@ -271,13 +287,13 @@ class ISBNResultDialog extends StatelessWidget {
           actions: [
             TextButton(
               onPressed: () {
-                Navigator.pop(context); // Close the ISBN popup
+                Navigator.pop(context); 
               },
               child: const Text('OK',
-               style: TextStyle(
+                  style: TextStyle(
                     fontSize: 16.0,
                     fontWeight: FontWeight.bold,
-                    color: Color(0xFFE16A3D), 
+                    color: Color(0xFFE16A3D),
                   )),
             ),
           ],

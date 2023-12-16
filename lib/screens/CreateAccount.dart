@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:ink/main.dart';
 import 'dart:io';
 import 'utils/custom_bottom_navigation_bar.dart';
-import 'Seller_Account.dart' as SellerAccount;
+import 'Seller_Account.dart';
 import 'package:ink/screens/utils/userAuthentication.dart';
 
 class CreateAccountScreen extends StatefulWidget {
@@ -26,11 +27,65 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
   bool show_progress_bar = false;
   String error_message = '';
 
-  // Added lists for wilaya and region dropdowns
-  List<String> wilayas = ['Oran', 'Algries', 'Annaba'];
-  List<String> regions = ['Region 1', 'Region 2', 'Region 3'];
+  List<String> wilayas = [
+    'Adrar',
+    'Chlef',
+    'Laghouat',
+    'Oum El Bouaghi',
+    'Batna',
+    'Béjaïa',
+    'Biskra',
+    'Béchar',
+    'Blida',
+    'Bouira',
+    'Tamanrasset',
+    'Tébessa',
+    'Tlemcen',
+    'Tiaret',
+    'Tizi Ouzou',
+    'Alger',
+    'Djelfa',
+    'Jijel',
+    'Sétif',
+    'Saïda',
+    'Skikda',
+    'Sidi Bel Abbès',
+    'Annaba',
+    'Guelma',
+    'Constantine',
+    'Médéa',
+    'Mostaganem',
+    'M\'Sila',
+    'Mascara',
+    'Ouargla',
+    'Oran',
+    'El Bayadh',
+    'Illizi',
+    'Bordj Bou Arréridj',
+    'Boumerdès',
+    'El Tarf',
+    'Tindouf',
+    'Tissemsilt',
+    'El Oued',
+    'Khenchela',
+    'Souk Ahras',
+    'Tipaza',
+    'Mila',
+    'Aïn Defla',
+    'Naâma',
+    'Aïn Témouchent',
+    'Ghardaïa',
+    'Relizane',
+  ];
 
-  String selectedWilaya = 'Oran';
+// Map to store regions for each wilaya
+  Map<String, List<String>> regionsByWilaya = {
+    'Adrar': ['Region 1', 'Region 2', 'Region 3'],
+    'Chlef': ['Region A', 'Region B', 'Region C'],
+    // ... (add regions for other wilayas)
+  };
+
+  String selectedWilaya = 'Adrar';
   String selectedRegion = 'Region 1';
 
   PickedFile? pickedImage;
@@ -54,8 +109,6 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back, color: Colors.black),
           onPressed: () {
-            action_handle_signup_button();
-
             Navigator.pop(context);
           },
         ),
@@ -110,8 +163,33 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                 _buildTextField('Full Name', nameController, Icons.person,
                     isPassword: false, isRequired: true),
                 // Dropdowns for wilaya and region
-                _buildDropdown('Wilaya', wilayas, selectedWilaya),
-                _buildDropdown('Region', regions, selectedRegion),
+                _buildDropdown(
+                  'Wilaya',
+                  wilayas,
+                  selectedWilaya,
+                  (String? newValue) {
+                    setState(() {
+                      selectedWilaya = newValue!;
+                      // Reset selected region when wilaya changes
+                      selectedRegion =
+                          regionsByWilaya[selectedWilaya]?.isNotEmpty ?? false
+                              ? regionsByWilaya[selectedWilaya]!.first
+                              : '';
+                    });
+                  },
+                ),
+                _buildDropdown(
+                  'Region',
+                  regionsByWilaya[selectedWilaya] ??
+                      [], // Use regions based on selected wilaya
+                  selectedRegion,
+                  (String? newValue) {
+                    setState(() {
+                      selectedRegion = newValue!;
+                    });
+                  },
+                ),
+
                 _buildTextField('Phone Number', phoneController, Icons.phone,
                     isPassword: false,
                     isRequired: true,
@@ -324,7 +402,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  Widget _buildDropdown(String label, List<String> items, String selectedItem) {
+  Widget _buildDropdown(
+    String label,
+    List<String> items,
+    String selectedItem,
+    void Function(String?) onChanged,
+  ) {
     return Container(
       margin: const EdgeInsets.only(bottom: 16.0),
       child: Column(
@@ -337,11 +420,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
           const SizedBox(height: 8.0),
           DropdownButtonFormField<String>(
             value: selectedItem,
-            onChanged: (String? newValue) {
-              setState(() {
-                selectedItem = newValue!;
-              });
-            },
+            onChanged: onChanged,
             validator: (value) {
               if (value == null || value.isEmpty) {
                 return 'This field is required';
@@ -382,9 +461,7 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     });
 
     if (_formKey.currentState!.validate() && _confirmPasswordError == null) {
-      // All fields are valid, proceed with account creation
-      // You can display a pop-up or navigate to another screen
-      _showAccountCreatedDialog();
+      action_handle_signup_button();
     }
   }
 
@@ -393,29 +470,46 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     error_message = '';
     setState(() {});
 
+    if (pickedImage == null) {
+      // Handle the case where no image is picked
+      return;
+    }
+
+    // Retrieve preferences saved by the anonymous user
+    Map<String, dynamic> preferences = {
+      'selectedSubcategories':
+          prefs?.getStringList('selectedSubcategories') ?? [],
+      // Add other preferences if needed
+    };
+
     String result = await UserAuthentication.signupUser({
       'accountname': nameController.text,
       'email': emailController.text,
       'password': passwordController.text,
       'confirmPassword': confirmPasswordController.text,
-      'imagepath':'',
-      'InstaLink': instagramLinkController.text,
-      'FacebookLink': facebookLinkController.text,
-      'phonenumber':phoneController.text,
-
+      'imagepath': pickedImage?.path,
+      'insta': instagramLinkController.text,
+      'face': facebookLinkController.text,
+      'phonenumber': phoneController.text,
       'wilaya': selectedWilaya,
       'region': selectedRegion,
+      'preferences':
+          preferences, // Pass preferences to the authentication process
     });
+
     if (result != 'success') {
       error_message = result;
-      show_progress_bar = false;
-      setState(() {});
     } else {
-      Navigator.of(context).pop();
+      String userId = UserAuthentication.getUserIdFromResult(result);
+      print(userId); // Replace this with the actual method to extract the user ID from the result
+      _showAccountCreatedDialog(userId);
     }
+
+    show_progress_bar = false;
+    setState(() {});
   }
 
-  void _showAccountCreatedDialog() {
+  void _showAccountCreatedDialog(String userId) {
     showDialog(
       context: context,
       builder: (BuildContext context) {
@@ -456,7 +550,8 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
                   ElevatedButton(
                     onPressed: () {
                       Navigator.pop(context); // Close the dialog
-                      _navigateToSellerAccountScreen(); // Navigate to the seller account screen
+                      _navigateToSellerAccountScreen(
+                          userId); // Pass userId to the seller account screen
                     },
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFFE16A3D),
@@ -472,10 +567,12 @@ class _CreateAccountScreenState extends State<CreateAccountScreen> {
     );
   }
 
-  void _navigateToSellerAccountScreen() {
+  void _navigateToSellerAccountScreen(String userId) {
     Navigator.push(
       context,
-      MaterialPageRoute(builder: (context) => SellerAccount.SellerAccount()),
+      MaterialPageRoute(
+        builder: (context) => SellerInfoScreen(sellerUserId: userId),
+      ),
     );
   }
 }

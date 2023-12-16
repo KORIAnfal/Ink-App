@@ -29,6 +29,10 @@ dependencies:
   google_sign_in: ^6.1.6
   dio: ^5.4.0
   shared_preferences: ^2.2.2
+  cached_network_image: ^3.0.0
+  supabase: ^1.0.1
+
+
 
 
 

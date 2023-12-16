@@ -3,6 +3,7 @@ import 'utils/custom_bottom_navigation_bar.dart';
 import 'sectionScreen.dart';
 import 'Guest_Account.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'BookDetailsUser.dart';
 
 
 Map sections = {
@@ -147,14 +148,12 @@ Widget _buildBookRow(List<String> bookPaths, List<bool> booksWithSpecialIcons, B
           (entry) => Flexible(
             child: GestureDetector(
               onTap: () {
-                /*Navigator.push(
+                Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BookDetailsUserScreen(
-                      bookPath: bookPaths[entry.key],
-                    ),
+                    builder: (context) => BookDetailsUserScreen( bookId: '1',),
                   ),
-                );*/
+                );
               },
               child: SizedBox(
                 width: (MediaQuery.of(context).size.width - 40) / 3.1, // Set the width for three books in a row
