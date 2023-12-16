@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flip_card/flip_card.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+
 
 class SellerCard extends StatelessWidget {
   final String sellerName;
   final String bookStatus;
-  final double price;
-  final bool isDeliveryAvailable;
+  final int price;
+  final int isDeliveryAvailable;
   final String instagram;
   final String email;
   final String phoneNumber;
@@ -48,15 +50,20 @@ class SellerCard extends StatelessWidget {
     );
   }
 
-  Widget _buildFrontSide() {
-    return Container(
-      padding: const EdgeInsets.all(16.0),
-      child: Row(
-        children: [
-          CircleAvatar(
-                radius: 40.0,
-                backgroundImage: AssetImage(sellerProfileImagePath),
-              ),
+Widget _buildFrontSide() {
+  return Container(
+    padding: const EdgeInsets.all(16.0),
+    child: Row(
+      children: [
+        CachedNetworkImage(
+          imageUrl: 'https://mqlvalzpuinscoobhwmc.supabase.co/storage/v1/object/public/${sellerProfileImagePath}',
+          imageBuilder: (context, imageProvider) => CircleAvatar(
+            radius: 40.0,
+            backgroundImage: imageProvider,
+          ),
+          placeholder: (context, url) => CircularProgressIndicator(),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
           // Left side - Profile photo and seller's info
           const SizedBox(width: 16.0),
           Column(
@@ -88,7 +95,7 @@ class SellerCard extends StatelessWidget {
             ),
             
             Text(
-              isDeliveryAvailable ? 'Dilevery is Available' : 'Dilevery is not available',
+              isDeliveryAvailable == 1 ? 'Dilevery is Available' : 'Dilevery is not available',
               style: const TextStyle(
                 fontSize: 16.0,
                 color: Colors.black, // You can change the colors as needed
@@ -142,6 +149,5 @@ Widget _buildContactInfo(String iconPath, String contactInfo) {
     ),
   );
 }
-
 
 }

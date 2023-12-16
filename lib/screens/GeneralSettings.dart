@@ -60,7 +60,7 @@ class _GeneralSettingsState extends State<GeneralSettings> {
             Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => SellerAccount.SellerAccount()),
+                  builder: (context) => MainScreen()),
             );
           }),
           const SizedBox(height: 16.0),

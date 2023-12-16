@@ -1,8 +1,20 @@
 import 'package:flutter/material.dart';
 import 'CreateAccount.dart';
+import 'package:ink/screens/utils/userAuthentication.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class LoginScreen extends StatefulWidget {
+ 
+   LoginScreen({Key? key}) : super(key: key);
+  
+  @override
+  _LoginScreenState createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  final TextEditingController _txEmailController = TextEditingController();
+  final TextEditingController _txPassController = TextEditingController();
+   bool show_progress_bar = false;
+  String error_message = '';
 
   @override
   Widget build(BuildContext context) {
@@ -15,8 +27,7 @@ class LoginScreen extends StatelessWidget {
             fit: BoxFit.cover,
           ),
           Container(
-            color:
-                Colors.white.withOpacity(0.5), // Adjust the opacity as needed
+            color: Colors.white.withOpacity(0.5),
           ),
           SingleChildScrollView(
             padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
@@ -26,69 +37,57 @@ class LoginScreen extends StatelessWidget {
                 const Text(
                   'Welcome',
                   style: TextStyle(
-                    color: Colors.black, // Change text color to black
+                    color: Colors.black,
                     fontSize: 40.0,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
                 const SizedBox(height: 30.0),
                 TextFormField(
+                  controller: _txEmailController,
                   decoration: const InputDecoration(
                     hintText: 'Email',
-                    hintStyle: TextStyle(
-                        color: Colors.black), // Change text color to black
-                    prefixIcon: Icon(Icons.email,
-                        color: Colors.black), // Change icon color to black
+                    hintStyle: TextStyle(color: Colors.black),
+                    prefixIcon: Icon(Icons.email, color: Colors.black),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.black), // Change border color to black
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors
-                              .black), // Change focused border color to black
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
-                  style: const TextStyle(
-                      color: Colors.black), // Change text color to black
+                  style: const TextStyle(color: Colors.black),
                 ),
                 const SizedBox(height: 20.0),
                 TextFormField(
+                  controller: _txPassController,
                   obscureText: true,
                   decoration: const InputDecoration(
                     hintText: 'Password',
-                    hintStyle: TextStyle(
-                        color: Colors.black), // Change text color to black
-                    prefixIcon: Icon(Icons.lock,
-                        color: Colors.black), // Change icon color to black
+                    hintStyle: TextStyle(color: Colors.black),
+                    prefixIcon: Icon(Icons.lock, color: Colors.black),
                     border: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors.black), // Change border color to black
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                     focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                          color: Colors
-                              .black), // Change focused border color to black
+                      borderSide: BorderSide(color: Colors.black),
                     ),
                   ),
-                  style: const TextStyle(
-                      color: Colors.black), // Change text color to black
+                  style: const TextStyle(color: Colors.black),
                 ),
                 const SizedBox(height: 20.0),
                 Center(
-                  // Center the login button
                   child: ElevatedButton(
                     onPressed: () {
-                      _showLoginSuccessDialog(context);
+                      action_handle_login_button();
                     },
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFFE16A3D), // Use the specified color
+                      backgroundColor: const Color(0xFFE16A3D),
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     ),
                     child: const Text(
                       'Login',
-                      style: TextStyle(
-                          color: Colors.black), // Change text color to black
+                      style: TextStyle(color: Colors.black),
                     ),
                   ),
                 ),
@@ -98,12 +97,10 @@ class LoginScreen extends StatelessWidget {
                   children: [
                     const Text(
                       "Don't have an account? ",
-                      style: TextStyle(
-                          color: Colors.black), // Change text color to black
+                      style: TextStyle(color: Colors.black),
                     ),
                     GestureDetector(
                       onTap: () {
-                        // Navigate to the registration screen
                         Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -126,8 +123,32 @@ class LoginScreen extends StatelessWidget {
         ],
       ),
     );
+    
+  }
+  void action_handle_login_button() async {
+  show_progress_bar = true;
+  error_message = '';
+  setState(() {});
+
+  String result = await UserAuthentication.loginUser(
+      _txEmailController.text, _txPassController.text);
+
+  if (result != 'success') {
+    error_message = result;
+  } else {
+    // Do something upon successful login
+
+    // Show the success dialog
+    _showLoginSuccessDialog(context);
   }
 
+  show_progress_bar = false;
+  setState(() {});
+}
+
+
+
+ 
   void _showLoginSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -137,7 +158,7 @@ class LoginScreen extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               Image.asset(
-                'assets/images/book_user.png', // Add your success illustration
+                'assets/images/book_user.png',
                 height: 100.0,
               ),
               const SizedBox(height: 20.0),
@@ -151,10 +172,10 @@ class LoginScreen extends StatelessWidget {
               const SizedBox(height: 20.0),
               ElevatedButton(
                 onPressed: () {
-                  Navigator.pop(context); // Close the dialog
+                  Navigator.pop(context);
                 },
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color(0xFFE16A3D), // Use the specified color
+                  backgroundColor: const Color(0xFFE16A3D),
                   padding: const EdgeInsets.symmetric(horizontal: 20.0),
                 ),
                 child: const Text('OK'),

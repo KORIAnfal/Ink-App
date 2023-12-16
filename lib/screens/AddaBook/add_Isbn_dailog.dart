@@ -10,7 +10,8 @@ class ISBNPopupDialog {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16.0),
           ),
-          child: Container(
+          child:
+          Container(
             padding: const EdgeInsets.all(16.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16.0),
@@ -40,7 +41,8 @@ class ISBNPopupDialog {
                   const Divider(
                     color: Color.fromRGBO(0, 0, 0, 0.21),
                   ),
-                  Column(
+                  Center(
+                    child: Column(
                     children: [
                       Container(
                         height: 133.76,
@@ -82,8 +84,8 @@ class ISBNPopupDialog {
                       const Text(
                         'OR',
                         style: TextStyle(
-                          color: Color(0xFF016A6D),
-                          fontSize: 23.0,
+                          color: Colors.black,
+                          fontSize: 14.0,
                         ),
                       ),
                       const SizedBox(height: 8.0),
@@ -125,30 +127,37 @@ class ISBNPopupDialog {
                       ),
                       const SizedBox(height: 16.0),
                       Align(
-  alignment: Alignment.centerRight,
-  child: ElevatedButton(
-   onPressed: () {
-  // Add functionality for the Next button
-  Navigator.pop(context); // Close the first dialog
-  ISBNPopupDialog1.show(context); // Show the second dialog
-},
-
-    style: ElevatedButton.styleFrom(
-      foregroundColor: const Color(0xFFE6864E), backgroundColor: Colors.white,
-      side: const BorderSide(
-        color: Color(0xFFE6864E),
-      ),
-    ),
-    child: const Text('Next'),
-  ),
-),
-
+                        alignment: Alignment.center,
+                        child: ElevatedButton(
+                          onPressed: () {
+                            // Add functionality for the Next button
+                            Navigator.pop(context); // Close the first dialog
+                            ISBNPopupDialog1.show(
+                                context); // Show the second dialog
+                          },
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: const Color(0xFFE16A3D),
+                            fixedSize:
+                                const Size(190.61, 25), // Set the background color
+                          ),
+                          child: const Padding(
+                            padding: EdgeInsets.all(10),
+                            child: Text(
+                              'Next',
+                              style: TextStyle(
+                                  fontSize: 14, fontWeight: FontWeight.w400),
+                            ),
+                          ),
+                        ),
+                      ),
                     ],
+                  ),
                   ),
                 ],
               ),
             ),
           ),
+    
         );
       },
     );

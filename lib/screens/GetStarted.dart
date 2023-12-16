@@ -1,8 +1,15 @@
 import 'package:flutter/material.dart';
 import 'Preferences.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'UserMain.dart';
 
 class GetStartedScreen extends StatelessWidget {
   const GetStartedScreen({Key? key}) : super(key: key);
+   Future<bool> isLoggedIn() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    // Check if user ID is present in SharedPreferences (you may need a more complex check)
+    return prefs.getString("user_id") != null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,12 +53,21 @@ class GetStartedScreen extends StatelessWidget {
               ),
               const SizedBox(height: 40), // Add space between the last text and the button
               ElevatedButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => const Preferencescreen()), // Use your preferences screen class
-                  );
-                },
+                onPressed: () async {
+    bool userLoggedIn = await isLoggedIn();
+
+    if (userLoggedIn) {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => MainScreen()),
+      );
+    } else {
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => const Preferencescreen()),
+      );
+    }
+  },
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFFE16A3D),
                   fixedSize: const Size(231, 49), // Set the background color
@@ -71,4 +87,3 @@ class GetStartedScreen extends StatelessWidget {
     );
   }
 }
-

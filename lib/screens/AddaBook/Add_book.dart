@@ -22,23 +22,13 @@ class _Add_bookState extends State<Add_book> {
     screenHeight = MediaQuery.of(context).size.height;
 
     return MaterialApp(
-            debugShowCheckedModeBanner: false,
-
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Center(
             child: Row(
               children: [
-                IconButton(
-                    onPressed: () {
-                      // Handle back button press
-                      Navigator.pop(context); // This line will navigate back
-                    },
-                    icon: const Icon(
-                      Icons.arrow_back,
-                      color: Colors.black,
-                    )),
-                SizedBox(width: screenWidth * 0.22),
+                SizedBox(width: screenWidth * 0.32),
                 const Text(
                   'Add Book',
                   style: TextStyle(
@@ -57,7 +47,8 @@ class _Add_bookState extends State<Add_book> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => Add_book_post(imageFile: file),
+                        builder: (context) =>
+                            Add_book_post(imageFile: file, ISBN: 0),
                       ),
                     );
                   },
@@ -73,7 +64,7 @@ class _Add_bookState extends State<Add_book> {
             Container(
               height: screenHeight * 0.8576,
               width: double.infinity,
-              color: const Color(0xFFFDE3CE),
+              color: Color.fromARGB(255, 254, 248, 243),
               child: file == null
                   ? Image.asset(
                       'assets/images/add-image.png',
@@ -96,9 +87,13 @@ class _Add_bookState extends State<Add_book> {
                 Container(
                   width: 80.0,
                   height: 80.0,
-                  decoration: const BoxDecoration(
+                  decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
+                    border: Border.all(
+                      color: Color(0xFFE16A3D), // Set the border color to red
+                      width: 2.0, // Set the border width as needed
+                    ),
                   ),
                   child: IconButton(
                     icon: const Icon(
@@ -117,9 +112,13 @@ class _Add_bookState extends State<Add_book> {
                 Container(
                   width: 80.0, // Adjust the width and height as needed
                   height: 80.0,
-                  decoration: const BoxDecoration(
+                  decoration:  BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.white,
+                    border: Border.all(
+                      color: Color(0xFFE16A3D), // Set the border color to red
+                      width: 2.0, // Set the border width as needed
+                    ),
                   ),
                   child: IconButton(
                     icon: const Icon(

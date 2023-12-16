@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'gender.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+
 
 class Preferencescreen extends StatefulWidget {
   const Preferencescreen({Key? key}) : super(key: key);
@@ -11,6 +13,29 @@ class Preferencescreen extends StatefulWidget {
 
 class _PreferencescreenState extends State<Preferencescreen> {
   List<String> selectedSubcategories = []; // Track selected subcategories
+  late SharedPreferences prefs;
+
+  @override
+  void initState() {
+    super.initState();
+    initPreferences();
+  }
+
+  Future<void> initPreferences() async {
+    prefs = await SharedPreferences.getInstance();
+    loadPreferences();
+  }
+
+  void loadPreferences() {
+    setState(() {
+      selectedSubcategories =
+          prefs.getStringList('selectedSubcategories') ?? [];
+    });
+  }
+  void savePreferences() {
+  prefs.setStringList('selectedSubcategories', selectedSubcategories);
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -244,6 +269,8 @@ class _PreferencescreenState extends State<Preferencescreen> {
                       const SizedBox(height: 40), // Add space between the last text and the button
                       ElevatedButton(
                         onPressed: () {
+                          savePreferences();
+
                           Navigator.push(
                             context,
                             MaterialPageRoute(builder: (context) =>  const Gender()), // Use your preferences screen class
@@ -296,6 +323,8 @@ class _PreferencescreenState extends State<Preferencescreen> {
           showToast('You can select up to 5 subcategories.');
         }
       }
+      savePreferences(); // Save preferences after any change
+
     });
   }
 
@@ -310,6 +339,7 @@ class _PreferencescreenState extends State<Preferencescreen> {
     );
   }
 }
+
 
 class SubcategoryButton extends StatelessWidget {
   final String label;
@@ -345,5 +375,6 @@ class SubcategoryButton extends StatelessWidget {
       ),
     );
   }
+  
 }
 
