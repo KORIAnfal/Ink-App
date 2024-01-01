@@ -3,9 +3,8 @@ import 'CreateAccount.dart';
 import 'package:ink/screens/utils/userAuthentication.dart';
 
 class LoginScreen extends StatefulWidget {
- 
-   LoginScreen({Key? key}) : super(key: key);
-  
+  LoginScreen({Key? key}) : super(key: key);
+
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
@@ -13,7 +12,7 @@ class LoginScreen extends StatefulWidget {
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _txEmailController = TextEditingController();
   final TextEditingController _txPassController = TextEditingController();
-   bool show_progress_bar = false;
+  bool show_progress_bar = false;
   String error_message = '';
 
   @override
@@ -30,7 +29,8 @@ class _LoginScreenState extends State<LoginScreen> {
             color: Colors.white.withOpacity(0.5),
           ),
           SingleChildScrollView(
-            padding: const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
+            padding:
+                const EdgeInsets.symmetric(horizontal: 40.0, vertical: 80.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -104,7 +104,8 @@ class _LoginScreenState extends State<LoginScreen> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const CreateAccountScreen()),
+                              builder: (context) =>
+                                  const CreateAccountScreen()),
                         );
                       },
                       child: const Text(
@@ -123,32 +124,25 @@ class _LoginScreenState extends State<LoginScreen> {
         ],
       ),
     );
-    
   }
+
   void action_handle_login_button() async {
-  show_progress_bar = true;
-  error_message = '';
-  setState(() {});
+    show_progress_bar = true;
+    error_message = '';
+    setState(() {});
+    String result = await UserAuthentication.loginUser(
+        _txEmailController.text, _txPassController.text);
 
-  String result = await UserAuthentication.loginUser(
-      _txEmailController.text, _txPassController.text);
-
-  if (result != 'success') {
-    error_message = result;
-  } else {
-    // Do something upon successful login
-
-    // Show the success dialog
-    _showLoginSuccessDialog(context);
+    if (result != 'success') {
+      error_message = result;
+      show_progress_bar = false;
+      setState(() {});
+    } else {
+      Navigator.of(context).pop();
+      _showLoginSuccessDialog(context);
+    }
   }
 
-  show_progress_bar = false;
-  setState(() {});
-}
-
-
-
- 
   void _showLoginSuccessDialog(BuildContext context) {
     showDialog(
       context: context,
